@@ -13,13 +13,26 @@
   </section>
 
   <script>
-    fetch('data/trail-system.json')
-    .then(data => data.json())
-    .then(systems => {
-      document.getElementById('trail-system-list').innerHTML = `
-        ${systems.map(system => `<li>${system.name}</li>`).join('')}
-      `.trim();
-    });
+(async () => {
+  const trailSystemsPromise = fetch('data/trail-system.json').then(result => result.json());
+  const parkingLotsPromise = fetch('data/parking-lot.json').then(result => result.json());
+
+  const trailSystems = await trailSystemsPromise;
+  const parkingLots = await parkingLotsPromise;
+
+  document.getElementById('trail-system-list').innerHTML = `
+    ${trailSystems.map(trailSystem => `<li><h2>${trailSystem.name}</h2><p>${renderParkingLot({trailSystem, parkingLots})}</p></li>`).join('')}
+  `.trim();
+
+  function renderParkingLot({trailSystem, parkingLots}) {
+    return `
+      ${trailSystem.nearby_parking_lot_ids.map(id => parkingLots.find(lot => lot.id === id)).map(lot => {
+        const [lat, lng] = lot.entrance_coordinates;
+        return `<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank">${lot.name}</a>`
+    }).join(', ')}
+    `.trim();
+  }
+})();
   </script>
 </body>
 </html>

@@ -2,13 +2,13 @@
   {
     "id": 0,
     "name": "Duthie",
-    "nearby_parking_lot_ids": [],
+    "nearby_parking_lot_ids": [0, 1],
     "nearby_restaurant_ids": []
   },
   {
     "id": 1,
     "name": "Paradise valley",
-    "nearby_parking_lot_ids": [],
+    "nearby_parking_lot_ids": [2],
     "nearby_restaurant_ids": []
   },
   {

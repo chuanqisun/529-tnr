@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "Duthie winter lot",
+    "street_address": null,
+    "entrance_coordinates": [47.584119, -121.976644]
+  },
+  {
+    "id": 1,
+    "name": "Duthie summer lot",
+    "street_address": "26100-26156 SE Issaquah-Fall City Rd, Issaquah, WA 98029",
+    "entrance_coordinates": [47.572383, -121.988567]
+  },
+  {
+    "id": 2,
+    "name": "Paradise valley trailhead",
+    "street_address": null,
+    "entrance_coordinates": [47.789007, -122.080139]
+  }
+]
