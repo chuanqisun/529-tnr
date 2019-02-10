@@ -1,0 +1,17 @@
+[
+  {
+    "name": "SRAM",
+    "website": "https://www.sram.com/",
+    "instagram_tags": ["sram", "srammtb"]
+  },
+  {
+    "name": "Schwalbe",
+    "website": "https://www.schwalbetires.com/",
+    "instagram_tags": ["rideschwalbe"]
+  },
+  {
+    "name": "Smith",
+    "website": "https://www.smithoptics.com/us/",
+    "instagram_tags": ["smithoptics"]
+  }
+]

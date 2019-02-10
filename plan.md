@@ -6,3 +6,11 @@
 5. look up restaurant locations
 6. look up trail system info
 7. look up parking info
+
+# Schema
+1. Trail system
+2. Parking lot
+3. Restaurant
+4. Sponsor
+5. Team member
+6. Ride
