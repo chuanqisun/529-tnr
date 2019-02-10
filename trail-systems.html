@@ -1,0 +1,25 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trail systems</title>
+</head>
+
+<body>
+  <section>
+    <h1>Trail systems</h1>
+    <ul id="trail-system-list"></ul>
+  </section>
+
+  <script>
+    fetch('data/trail-system.json')
+    .then(data => data.json())
+    .then(systems => {
+      document.getElementById('trail-system-list').innerHTML = `
+        ${systems.map(system => `<li>${system.name}</li>`).join('')}
+      `.trim();
+    });
+  </script>
+</body>
+</html>
