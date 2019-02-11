@@ -13,7 +13,7 @@
     const state = parsedUrl.searchParams.get('state');
     const githubAuthorizationCodeData = JSON.stringify({code, state});
     
-    window.localStorage.setItem('github-authorization-code-data', githubAuthorizationCodeData);
+    window.localStorage.setItem('github_authorization_code_data', githubAuthorizationCodeData);
     window.close();
   </script>
 </body>

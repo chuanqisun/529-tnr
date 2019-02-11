@@ -8,10 +8,13 @@
 
 <body>
   <button id="sign-in">Sign in</button>
+
+  <button id="add-trail">Add trail</button>
+
   <script>
     (async () => {
       const clientId = '93bc6d6286ff1f8d864c';
-      const redirect_uri = 'http://localhost:5500/oauth2-callback.html';
+      const redirect_uri = 'http://localhost:5500/client/oauth2-callback.html';
       const clientState = Math.random().toString();
 
       document.getElementById('sign-in').onclick = () => window.open(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&state=${clientState}`);
@@ -22,11 +25,14 @@
       const result = await fetch(`https://wt-9acbe4e672a011d1f00cc517028e7bb1-0.sandbox.auth0-extend.com/github-oauth2?code=${authorizationCode}`);
       const resultJson = await result.json();
       const accessToken = resultJson.access_token;
+
+      localStorage.setItem('access_token', accessToken);
+      sessionStorage.setItem('access_token', accessToken);
     })();
 
     async function waitForAuthorizationCode({clientState}) {
       return new Promise((resolve, reject) => {
-        const storageKeyForAuthorizationCodeData = 'github-authorization-code-data';
+        const storageKeyForAuthorizationCodeData = 'github_authorization_code_data';
 
         window.addEventListener('storage', storageEventHandler = event => {
           if (event.key === storageKeyForAuthorizationCodeData) {
@@ -42,7 +48,24 @@
         });
       });
     }
+  </script>
 
+  <script>
+
+document.getElementById('add-trail').onclick = () => {
+  const accessToken = sessionStorage.getItem('access_token');
+  if (accessToken) {
+    fetch('repos/chuanqisun/529-legion-hub/contents/client/data/restaurant.json', {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${accessToken}`,
+      }
+    });
+  } else {
+    window.open('./index.html');
+  }
+
+}
   </script>
 </body>
 </html>
