@@ -1,0 +1,20 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>authorizing…</title>
+</head>
+
+<body>
+  <script>
+    const parsedUrl = new URL(window.location.href);
+    const code = parsedUrl.searchParams.get('code');
+    const state = parsedUrl.searchParams.get('state');
+    const githubAuthorizationCodeData = JSON.stringify({code, state});
+    
+    window.localStorage.setItem('github-authorization-code-data', githubAuthorizationCodeData);
+    window.close();
+  </script>
+</body>
+</html>
