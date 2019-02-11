@@ -9,15 +9,16 @@
 <body>
   <button id="sign-in">Sign in</button>
 
-  <button id="add-trail">Add trail</button>
+  <button id="add-restaurant">Add restaurant</button>
 
   <script>
     (async () => {
       const clientId = '93bc6d6286ff1f8d864c';
-      const redirect_uri = 'http://localhost:5500/client/oauth2-callback.html';
+      const redirect_uri = encodeURIComponent('http://localhost:5500/client/oauth2-callback.html');
       const clientState = Math.random().toString();
+      const scope = encodeURIComponent('repo');
 
-      document.getElementById('sign-in').onclick = () => window.open(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&state=${clientState}`);
+      document.getElementById('sign-in').onclick = () => window.open(`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&state=${clientState}&scope=${scope}`);
 
       const authorizationCode = await waitForAuthorizationCode({clientState});
       console.dir(authorizationCode);
@@ -25,6 +26,8 @@
       const result = await fetch(`https://wt-9acbe4e672a011d1f00cc517028e7bb1-0.sandbox.auth0-extend.com/github-oauth2?code=${authorizationCode}`);
       const resultJson = await result.json();
       const accessToken = resultJson.access_token;
+
+      console.dir(resultJson);
 
       localStorage.setItem('access_token', accessToken);
       sessionStorage.setItem('access_token', accessToken);
@@ -52,13 +55,41 @@
 
   <script>
 
-document.getElementById('add-trail').onclick = () => {
+document.getElementById('add-restaurant').onclick = async () => {
   const accessToken = sessionStorage.getItem('access_token');
+
   if (accessToken) {
-    fetch('repos/chuanqisun/529-legion-hub/contents/client/data/restaurant.json', {
-      method: 'PUT',
+    const restaurantsResponse = await fetch('https://api.github.com/repos/chuanqisun/529-legion-hub/contents/client/data/restaurant.json', {
       headers: {
         Authorization: `token ${accessToken}`,
+        'Accept': 'application/json',
+        "Content-Type": 'application/json; charset=utf-8'   
+      }
+    });
+
+    const restaurantsFile = await restaurantsResponse.json();
+    console.dir(restaurantsFile);
+    const {sha, content} = restaurantsFile;
+
+    const originalObject = JSON.parse(atob(content));
+    originalObject.push({
+      name: 'some name',
+      id: Math.random()
+    });
+
+    const payload = btoa(JSON.stringify(originalObject, null, 2));
+
+    const updateResponse = await fetch('https://api.github.com/repos/chuanqisun/529-legion-hub/contents/client/data/restaurant.json', {
+      method: 'PUT',
+      body: JSON.stringify({
+        "message": "Add restaurant through API",
+        "content": payload,
+        "sha": sha
+      }),
+      headers: {
+        Authorization: `token ${accessToken}`,
+        'Accept': 'application/json',
+        "Content-Type": 'application/json; charset=utf-8'
       }
     });
   } else {
