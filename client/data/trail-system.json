@@ -3,23 +3,29 @@
     "id": 0,
     "name": "Duthie",
     "nearby_parking_lot_ids": [0, 1],
-    "nearby_restaurant_ids": []
+    "nearby_restaurant_ids": [1]
   },
   {
     "id": 1,
-    "name": "Paradise valley",
+    "name": "Paradise Valley",
     "nearby_parking_lot_ids": [2],
-    "nearby_restaurant_ids": []
+    "nearby_restaurant_ids": [0]
   },
   {
     "id": 2,
-    "name": "Tokul east",
+    "name": "Tokul East",
+    "nearby_parking_lot_ids": [3],
+    "nearby_restaurant_ids": [2]
+  },
+  {
+    "id": 3,
+    "name": "Tokul West",
     "nearby_parking_lot_ids": [],
     "nearby_restaurant_ids": []
   },
   {
-    "id": 3,
-    "name": "Tokul west",
+    "id": 4,
+    "name": "Soaring Eagle",
     "nearby_parking_lot_ids": [],
     "nearby_restaurant_ids": []
   }

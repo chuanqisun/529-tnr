@@ -14,7 +14,13 @@
   {
     "id": 2,
     "name": "Paradise valley trailhead",
-    "street_address": null,
+    "street_address": "23210 Paradise Lake Rd Woodinville, WA 98077",
     "entrance_coordinates": [47.789007, -122.080139]
+  },
+  {
+    "id": 3,
+    "name": "Tokul east parking lot",
+    "street_address": "4266 356th Dr SE, Fall City, WA 98024",
+    "entrance_coordinates": [47.567720, -121.865428]
   }
 ]
