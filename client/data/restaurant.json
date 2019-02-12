@@ -1,12 +1,14 @@
 [
   {
-    "name": "some name",
-    "id": 0.968492971277706
+    "id": 0,
+    "name": "Tipsy Cow"
   },
-  null,
-  null,
-  null,
-  null,
-  null,
-  null
+  {
+    "id": 1,
+    "name": "RAM"
+  },
+  {
+    "id": 2,
+    "name": "Fall City Roadhouse"
+  }
 ]
