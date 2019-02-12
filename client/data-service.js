@@ -16,9 +16,10 @@ export class DataService {
     });
   }
 
-  async addRestaurant({ restaurant }) {
+  async addRestaurant({ name }) {
     const { content, sha } = await this.githubContentApi.get({ entity: 'Restaurant' });
-    content.push(restaurant);
+    const newId = content.length > 0 ? content[content.length - 1].id + 1 : 0;
+    content.push({ id: newId, name });
 
     const { content: contentNew, commit } = await this.githubContentApi.update({
       entity: 'Restaurant',
@@ -26,7 +27,6 @@ export class DataService {
       content,
       sha,
     });
-
 
     return { content: contentNew, commit };
   }
