@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Sponsors</title>
@@ -16,16 +17,9 @@
     <textarea id="instragram_tags" readonly></textarea>
   </section>
 
-  <script>
-    fetch('data/sponsor.json')
-    .then(data => data.json())
-    .then(sponsors => {
-      document.getElementById('sponsor-list').innerHTML = `
-        ${sponsors.map(sponsor => `<li><a href="${sponsor.website}" target="_blank">${sponsor.name}</a></li>`).join('')}
-      `.trim();
+  <script type="module" src="sponsors.js">
 
-      document.getElementById('instragram_tags').value = sponsors.reduce((result, sponsor) => [...result, ...sponsor.instagram_tags.map(tag => `#${tag}`)], []).join('');
-    });
   </script>
 </body>
+
 </html>

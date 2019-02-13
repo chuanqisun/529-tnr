@@ -5,24 +5,17 @@
 <head>
   <meta charset="utf-8">
   <title>Home</title>
-  <script type="module" src="services/user.service.js"></script>
-  <script type="module" src="services/content.service.js"></script>
 </head>
+<header>
+  <div id="current-user">
+    <button id="sign-in" hidden>Sign in</button>
+    <button id="sign-out" hidden>Sign out</button>
+  </div>
+</header>
 
-<body>
-  <mtb-user-manager></mtb-user-manager>
-  <mtb-content-manager></mtb-content-manager>
+<button id="add-restaurant">Add restaurant</button>
 
-  <header>
-    <div id="current-user">
-      <button id="sign-in" hidden>Sign in</button>
-      <button id="sign-out" hidden>Sign out</button>
-    </div>
-  </header>
-
-  <button id="add-restaurant">Add restaurant</button>
-
-  <script type="module" src="index.js"></script>
+<script type="module" src="index.js"></script>
 </body>
 
 </html>

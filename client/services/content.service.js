@@ -14,7 +14,8 @@ class ContentService {
       TrailSystem: 'client/data/trail-system.json',
     };
 
-    this.urlRoot = 'https://api.github.com';
+    this.urlRootApi = 'https://api.github.com';
+    this.urlRootStatic = location.origin;
 
     this.headers = {
       Authorization: `token ${this.accessToken}`,
@@ -38,13 +39,17 @@ class ContentService {
     return { content: contentNew, commit };
   }
 
+  async getSponsors() {
+    return this._getAnonymous({ entity: 'Sponsor' });
+  }
+
   async _create() {
     throw new Error('not implemented');
   }
 
   async _update({ entity, content, sha, message }) {
     const path = this.entityPathMap[entity];
-    const endpoint = `${this.urlRoot}/repos/${this.owner}/${this.repo}/contents/${path}`;
+    const endpoint = `${this.urlRootApi}/repos/${this.owner}/${this.repo}/contents/${path}`;
     const contentBase64 = btoa(JSON.stringify(content, null, 2));
 
     const response = await fetch(endpoint, {
@@ -66,7 +71,7 @@ class ContentService {
 
   async _get({ entity }) {
     const path = this.entityPathMap[entity];
-    const endpoint = `${this.urlRoot}/repos/${this.owner}/${this.repo}/contents/${path}`;
+    const endpoint = `${this.urlRootApi}/repos/${this.owner}/${this.repo}/contents/${path}`;
     const response = await fetch(endpoint, {
       headers: this.headers,
     });
@@ -75,6 +80,13 @@ class ContentService {
     const contentObj = JSON.parse(atob(content));
 
     return { content: contentObj, sha };
+  }
+
+  async _getAnonymous({ entity }) {
+    const path = this.entityPathMap[entity];
+    const response = await fetch(`${this.urlRootStatic}/${path}`);
+
+    return response.json();
   }
 }
 
