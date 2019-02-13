@@ -5,7 +5,7 @@ module.exports = async function(context, cb) {
   const client_id = '93bc6d6286ff1f8d864c';
   const client_secret = context.secrets.clientSecret;
 
-  const requestUrl = `https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${client_secret}&code=${code}&state=${state}`;
+  const requestUrl = `https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${client_secret}&code=${code}`;
 
   const result = await fetch(requestUrl, {
     headers: {
