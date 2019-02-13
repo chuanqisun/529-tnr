@@ -16,17 +16,11 @@ class App {
     };
 
     document.getElementById('add-restaurant').onclick = async () => {
-      const accessToken = sessionStorage.getItem('access_token');
+      const result = await this.contentService.addRestaurant({
+        name: 'Pomo',
+      });
 
-      if (accessToken) {
-        const result = await this.contentService.addRestaurant({
-          name: 'Pomo',
-        });
-
-        console.dir(result);
-      } else {
-        window.open('./index.html');
-      }
+      console.dir(result);
     }
 
     this.userService.getAuthenticatedUser().then(user => {
