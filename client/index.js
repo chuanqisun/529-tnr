@@ -1,22 +1,25 @@
+import { userService } from './services/user.service.js';
+import { contentService } from './services/content.service.js';
+
 class App {
-  constructor() {
-    this.userManager = document.querySelector('mtb-user-manager');
-    this.contentManager = document.querySelector('mtb-content-manager');
+  constructor({ userService, contentService }) {
+    this.userService = userService;
+    this.contentService = contentService;
 
     document.getElementById('sign-in').onclick = async () => {
       document.getElementById('sign-in').disabled = true;
-      this.userManager.signIn();
+      this.userService.signIn();
     };
 
     document.getElementById('sign-out').onclick = async () => {
-      this.userManager.signOut();
+      this.userService.signOut();
     };
 
     document.getElementById('add-restaurant').onclick = async () => {
       const accessToken = sessionStorage.getItem('access_token');
 
       if (accessToken) {
-        const result = await this.contentManager.addRestaurant({
+        const result = await this.contentService.addRestaurant({
           name: 'Pomo',
         });
 
@@ -26,7 +29,7 @@ class App {
       }
     }
 
-    this.userManager.getAuthenticatedUser().then(user => {
+    this.userService.getAuthenticatedUser().then(user => {
       if (user) {
         document.getElementById('sign-out').hidden = false;
         document.getElementById('sign-out').innerText = `${user.name} (sign out)`;
@@ -37,7 +40,7 @@ class App {
   }
 }
 
-new App();
+new App({ userService, contentService });
 
 
 

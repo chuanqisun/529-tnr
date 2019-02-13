@@ -1,7 +1,5 @@
-class UserManager extends HTMLElement {
+class UserService {
   constructor() {
-    super();
-
     this.clientId = '93bc6d6286ff1f8d864c';
     this.redirectUri = 'http://localhost:5500/client/oauth2-callback.html';
     this.scope = 'repo';
@@ -9,6 +7,8 @@ class UserManager extends HTMLElement {
     this.storageKeyForAuthorizationCodeData = 'github_authorization_code_data';
     this.storageKeyForAccessToken = 'github_access_token';
   }
+
+  get accessToken() { return localStorage.getItem(this.storageKeyForAccessToken) };
 
   async signIn() {
     const clientState = Math.random().toString();
@@ -47,17 +47,14 @@ class UserManager extends HTMLElement {
         headers,
       });
 
+      if (!response.ok) throw new Error();
+
       return await response.json();
     } catch (error) {
       /* assume the token is invalid */
       localStorage.removeItem(this.storageKeyForAccessToken);
       return null;
     }
-  }
-
-  async getAccessToken() {
-    /* token could be invalid */
-    return localStorage.getItem(this.storageKeyForAccessToken);
   }
 
   async _waitForAuthorizationCode({ clientState }) {
@@ -80,4 +77,4 @@ class UserManager extends HTMLElement {
   }
 }
 
-customElements.define('mtb-user-manager', UserManager);
+export const userService = new UserService();
