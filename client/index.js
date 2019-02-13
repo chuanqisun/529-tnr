@@ -4,11 +4,12 @@ class App {
     this.contentManager = document.querySelector('mtb-content-manager');
 
     document.getElementById('sign-in').onclick = async () => {
-      this.userManager.signIn()
+      document.getElementById('sign-in').disabled = true;
+      this.userManager.signIn();
     };
 
     document.getElementById('sign-out').onclick = async () => {
-      this.userManager.signOut()
+      this.userManager.signOut();
     };
 
     document.getElementById('add-restaurant').onclick = async () => {
@@ -25,7 +26,14 @@ class App {
       }
     }
 
-    this.userManager.getAuthenticatedUser().then(user => console.dir(user));
+    this.userManager.getAuthenticatedUser().then(user => {
+      if (user) {
+        document.getElementById('sign-out').hidden = false;
+        document.getElementById('sign-out').innerText = `${user.name} (sign out)`;
+      } else {
+        document.getElementById('sign-in').hidden = false;
+      }
+    });
   }
 }
 

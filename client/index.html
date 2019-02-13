@@ -5,15 +5,20 @@
 <head>
   <meta charset="utf-8">
   <title>Home</title>
-  <script type="module" src="elements/user-manager.element.js"></script>
-  <script type="module" src="elements/content-manager.element.js"></script>
+  <script type="module" src="components/user-manager/user-manager.element.js"></script>
+  <script type="module" src="components/content-manager/content-manager.element.js"></script>
 </head>
 
 <body>
   <mtb-user-manager></mtb-user-manager>
   <mtb-content-manager></mtb-content-manager>
-  <button id="sign-in">Sign in</button>
-  <button id="sign-out">Sign out</button>
+
+  <header>
+    <div id="current-user">
+      <button id="sign-in" hidden>Sign in</button>
+      <button id="sign-out" hidden>Sign out</button>
+    </div>
+  </header>
 
   <button id="add-restaurant">Add restaurant</button>
 

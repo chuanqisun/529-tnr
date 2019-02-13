@@ -1,11 +1,35 @@
-export class GithubUserService {
-  constructor({ clientId, redirectUri, scope, authenticationEndpoint }) {
-    this.clientId = clientId;
-    this.redirectUri = redirectUri;
-    this.scope = scope;
-    this.authenticationEndpoint = authenticationEndpoint;
+class UserManager extends HTMLElement {
+  constructor() {
+    super();
+
+    this.clientId = '93bc6d6286ff1f8d864c';
+    this.redirectUri = 'http://localhost:5500/client/oauth2-callback.html';
+    this.scope = 'repo';
+    this.authenticationEndpoint = 'https://wt-9acbe4e672a011d1f00cc517028e7bb1-0.sandbox.auth0-extend.com/github-oauth2';
     this.storageKeyForAuthorizationCodeData = 'github_authorization_code_data';
     this.storageKeyForAccessToken = 'github_access_token';
+  }
+
+  async signIn() {
+    const clientState = Math.random().toString();
+
+    window.open(`https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${clientState}&scope=${this.scope}`);
+
+    const authorizationCode = await this._waitForAuthorizationCode({ clientState });
+
+    const result = await fetch(`${this.authenticationEndpoint}?code=${authorizationCode}`);
+    const resultJson = await result.json();
+    const accessToken = resultJson.access_token;
+
+    localStorage.setItem(this.storageKeyForAccessToken, accessToken);
+
+    location.reload();
+  }
+
+  async signOut() {
+    localStorage.removeItem(this.storageKeyForAccessToken);
+
+    location.reload();
   }
 
   async getAuthenticatedUser() {
@@ -31,22 +55,9 @@ export class GithubUserService {
     }
   }
 
-  async signIn() {
-    const clientState = Math.random().toString();
-
-    window.open(`https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${this.redirectUri}&state=${clientState}&scope=${this.scope}`);
-
-    const authorizationCode = await this._waitForAuthorizationCode({ clientState });
-
-    const result = await fetch(`${this.authenticationEndpoint}?code=${authorizationCode}`);
-    const resultJson = await result.json();
-    const accessToken = resultJson.access_token;
-
-    localStorage.setItem(this.storageKeyForAccessToken, accessToken);
-  }
-
-  async signOut() {
-    localStorage.removeItem(this.storageKeyForAccessToken);
+  async getAccessToken() {
+    /* token could be invalid */
+    return localStorage.getItem(this.storageKeyForAccessToken);
   }
 
   async _waitForAuthorizationCode({ clientState }) {
@@ -67,5 +78,6 @@ export class GithubUserService {
       });
     });
   }
-
 }
+
+customElements.define('mtb-user-manager', UserManager);
