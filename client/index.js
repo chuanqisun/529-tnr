@@ -1,16 +1,37 @@
-import { DataService } from './data-service.js';
+class App {
+  constructor() {
+    this.userManager = document.querySelector('mtb-user-manager');
+    this.contentManager = document.querySelector('mtb-content-manager');
 
-document.getElementById('add-restaurant').onclick = async () => {
-  const accessToken = sessionStorage.getItem('access_token');
+    document.getElementById('sign-in').onclick = async () => {
+      this.userManager.signIn()
+    };
 
-  if (accessToken) {
-    const dataService = new DataService({ accessToken });
-    const result = await dataService.addRestaurant({
-      name: 'Pomo',
-    });
+    document.getElementById('sign-out').onclick = async () => {
+      this.userManager.signOut()
+    };
 
-    console.dir(result);
-  } else {
-    window.open('./index.html');
+    document.getElementById('add-restaurant').onclick = async () => {
+      const accessToken = sessionStorage.getItem('access_token');
+
+      if (accessToken) {
+        const result = await this.contentManager.addRestaurant({
+          name: 'Pomo',
+        });
+
+        console.dir(result);
+      } else {
+        window.open('./index.html');
+      }
+    }
+
+    this.userManager.getAuthenticatedUser().then(user => console.dir(user));
   }
 }
+
+new App();
+
+
+
+
+

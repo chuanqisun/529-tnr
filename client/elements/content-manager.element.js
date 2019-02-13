@@ -1,9 +1,11 @@
-import { GithubContentApi } from './github-content-api.js';
+import { GithubContentService } from '../services/github-content.service.js';
 
+class ContentManager extends HTMLElement {
+  async connectedCallback() {
+    this.userManager = document.querySelector('mtb-user-manager');
+    const accessToken = await this.userManager.getAccessToken();
 
-export class DataService {
-  constructor({ accessToken }) {
-    this.githubContentApi = new GithubContentApi({
+    this.githubContentApi = new GithubContentService({
       accessToken,
       owner: 'chuanqisun',
       repo: '529-legion-hub',
@@ -31,3 +33,5 @@ export class DataService {
     return { content: contentNew, commit };
   }
 }
+
+customElements.define('mtb-content-manager', ContentManager);

@@ -1,4 +1,4 @@
-export class GithubContentApi {
+export class GithubContentService {
   constructor({ accessToken, owner, repo, entityPathMap }) {
     this.accessToken = accessToken;
     this.owner = owner;
@@ -6,9 +6,12 @@ export class GithubContentApi {
     this.entityPathMap = entityPathMap;
 
     this.urlRoot = 'https://api.github.com';
-    this.headerContentType = 'application/json; charset=utf-8';
-    this.headerAccept = 'application/json';
-    this.headerAuthorization = `token ${this.accessToken}`;
+
+    this.headers = {
+      Authorization: `token ${this.accessToken}`,
+      'Accept': 'application/json',
+      "Content-Type": 'application/json; charset=utf-8',
+    };
   }
 
   async create() {
@@ -27,11 +30,7 @@ export class GithubContentApi {
         "content": contentBase64,
         "sha": sha,
       }),
-      headers: {
-        Authorization: this.headerAuthorization,
-        'Accept': this.headerAccept,
-        "Content-Type": this.headerContentType,
-      },
+      headers: this.headers,
     });
 
     return response.json();
@@ -45,11 +44,7 @@ export class GithubContentApi {
     const path = this.entityPathMap[entity];
     const endpoint = `${this.urlRoot}/repos/${this.owner}/${this.repo}/contents/${path}`;
     const response = await fetch(endpoint, {
-      headers: {
-        Authorization: this.headerAuthorization,
-        'Accept': this.headerAccept,
-        "Content-Type": this.headerContentType,
-      },
+      headers: this.headers,
     });
 
     const { content, sha } = await response.json();
