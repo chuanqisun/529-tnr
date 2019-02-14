@@ -16,3 +16,8 @@
 4. Sponsor
 5. Team member
 6. Ride
+
+# Reference
+- [CSS-tricks conference](https://github.com/CSS-Tricks/conferences)
+- [CSS-tricks conference behind the scene](https://css-tricks.com/a-site-for-front-end-development-conferences-built-with-11ty-on-netlify/)
+- [11ty.io](https://www.11ty.io/)
