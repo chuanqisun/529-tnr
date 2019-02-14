@@ -32,7 +32,7 @@
 
   function renderParkingLot({trailSystem, parkingLots}) {
     return `
-      ${trailSystem.nearby_parking_lot_ids.map(id => parkingLots.find(lot => lot.id === id)).map(lot => {
+      ${trailSystem.parking_lot_ids.map(id => parkingLots.find(lot => lot.id === id)).map(lot => {
         const [lat, lng] = lot.entrance_coordinates;
         return `<a href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank">${lot.name}</a>`
     }).join(', ')}

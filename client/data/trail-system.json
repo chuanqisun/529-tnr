@@ -2,31 +2,75 @@
   {
     "id": 0,
     "name": "Duthie",
-    "nearby_parking_lot_ids": [0, 1],
-    "nearby_restaurant_ids": [1]
+    "parking_lot_ids": [0, 1],
+    "restaurant_ids": [1]
   },
   {
     "id": 1,
     "name": "Paradise Valley",
-    "nearby_parking_lot_ids": [2],
-    "nearby_restaurant_ids": [0]
+    "parking_lot_ids": [2],
+    "restaurant_ids": [0]
   },
   {
     "id": 2,
     "name": "Tokul East",
-    "nearby_parking_lot_ids": [3],
-    "nearby_restaurant_ids": [2]
+    "parking_lot_ids": [3],
+    "restaurant_ids": [2],
+    "trail_permit_ids": [1]
   },
   {
     "id": 3,
     "name": "Tokul West",
-    "nearby_parking_lot_ids": [],
-    "nearby_restaurant_ids": []
+    "parking_lot_ids": [4],
+    "restaurant_ids": [2],
+    "trail_permit_ids": [1]
   },
   {
     "id": 4,
     "name": "Soaring Eagle",
-    "nearby_parking_lot_ids": [],
-    "nearby_restaurant_ids": []
+    "parking_lot_ids": [5],
+    "restaurant_ids": [3]
+  },
+  {
+    "id": 5,
+    "name": "Grand Ridge",
+    "parking_lot_ids": [6],
+    "restaurant_ids": [1, 4]
+  },
+  {
+    "id": 6,
+    "name": "St. Edwards",
+    "parking_lot_ids": [7, 8],
+    "restaurant_ids": [5]
+  },
+  {
+    "id": 7,
+    "name": "Cherry Valley",
+    "parking_lot_ids": [9],
+    "restaurant_ids": [6]
+  },
+  {
+    "id": 8,
+    "name": "Olallie",
+    "parking_lot_ids": [10],
+    "restaurant_ids": [7]
+  },
+  {
+    "id": 9,
+    "name": "Tolt MacDonald Park",
+    "parking_lot_ids": [11, 12],
+    "restaurant_ids": [8]
+  },
+  {
+    "id": 10,
+    "name": "Tiger Mountain",
+    "parking_lot_ids": [13, 14],
+    "restaurant_ids": []
+  },
+  {
+    "id": 11,
+    "name": "Raging River",
+    "parking_lot_ids": [15],
+    "restaurant_ids": [9, 10]
   }
 ]

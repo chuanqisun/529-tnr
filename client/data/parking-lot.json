@@ -2,7 +2,6 @@
   {
     "id": 0,
     "name": "Duthie winter lot",
-    "street_address": null,
     "entrance_coordinates": [47.584119, -121.976644]
   },
   {
@@ -13,14 +12,84 @@
   },
   {
     "id": 2,
-    "name": "Paradise valley trailhead",
+    "name": "Paradise Valley trailhead",
     "street_address": "23210 Paradise Lake Rd Woodinville, WA 98077",
     "entrance_coordinates": [47.789007, -122.080139]
   },
   {
     "id": 3,
-    "name": "Tokul east parking lot",
+    "name": "Tokul East trailhead",
     "street_address": "4266 356th Dr SE, Fall City, WA 98024",
     "entrance_coordinates": [47.567720, -121.865428]
+  },
+  {
+    "id": 4,
+    "name": "Tokul West roundabout",
+    "street_address": "4137 Fall City-Carnation Rd SE, Fall City, WA 98024",
+    "entrance_coordinates": [47.570321, -121.887966]
+  },
+  {
+    "id": 5,
+    "name": "Soaring Eagle water tower",
+    "street_address": "26015 E Main Drive, Sammamish, WA 98075",
+    "entrance_coordinates": [47.611934, -121.991792]
+  },
+  {
+    "id": 6,
+    "name": "East Sunset Way trailhead",
+    "street_address": "606 East Sunset Way, Issaquah, WA 98027",
+    "entrance_coordinates": [47.529896, -122.025725]
+  },
+  {
+    "id": 7,
+    "name": "St.Edwards park",
+    "entrance_coordinates": [47.733163, -122.255898],
+    "parking_permit_ids": [0]
+  },
+  {
+    "id": 8,
+    "name": "QFC parking lot",
+    "street_address": "14130 Juanita Dr NE, Bothell, WA 98011",
+    "entrance_coordinates": [47.529896, -122.025725]
+  },
+  {
+    "id": 9,
+    "name": "Street parking by Mountain View Rd NE",
+    "street_address": "16745 Mountain View Rd NE, Duvall, WA 98019",
+    "entrance_coordinates": [47.745893, -121.908317]
+  },
+  {
+    "id": 10,
+    "name": "Cedar Falls trailhead",
+    "entrance_coordinates": [47.432548, -121.766458]
+  },
+  {
+    "id": 11,
+    "name": "Tolt MacDonald Park",
+    "street_address": "31020 NE 40th St, Carnation, WA 98014",
+    "entrance_coordinates": [47.644222, -121.922551]
+  },
+  {
+    "id": 12,
+    "name": "Tolt MacDonald Base ball field",
+    "entrance_coordinates": [47.640908, -121.916130]
+  },
+  {
+    "id": 13,
+    "name": "Tiger Mountain lower lot",
+    "entrance_coordinates": [47.466405, -121.931122]
+  },
+  {
+    "id": 14,
+    "name": "Tiger Mountain upper lot",
+    "entrance_coordinates": [47.467693, -121.936664],
+    "parking_permit_ids": [0]
+  },
+  {
+    "id": 15,
+    "name": "Rattlesnake Mountain Trail parking lot",
+    "street_address": "37580 Winery Rd, Snoqualmie, WA 98065",
+    "entrance_coordinates": [47.509592, -121.844198],
+    "parking_permit_ids": [0]
   }
 ]
