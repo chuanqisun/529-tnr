@@ -8,10 +8,10 @@ class ContentService {
     this.owner = 'chuanqisun';
     this.repo = '529-legion-hub';
     this.entityPathMap = {
-      ParkingLot: 'client/data/parking-lot.json',
-      Restaurant: 'client/data/restaurant.json',
-      Sponsor: 'client/data/sponsor.json',
-      TrailSystem: 'client/data/trail-system.json',
+      ParkingLot: 'data/parking-lot.json',
+      Restaurant: 'data/restaurant.json',
+      Sponsor: 'data/sponsor.json',
+      TrailSystem: 'data/trail-system.json',
     };
 
     this.urlRootApi = 'https://api.github.com';
