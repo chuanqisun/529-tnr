@@ -1,0 +1,14 @@
+{
+  "name": "external-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve --input=src --output=dist",
+    "build": "eleventy --input=src --output=dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
