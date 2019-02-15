@@ -3,18 +3,18 @@
     "id": 0,
     "name": "SRAM",
     "website": "https://www.sram.com/",
-    "instagram_tags": ["sram", "srammtb"]
+    "instagramTags": ["sram", "srammtb"]
   },
   {
     "id": 1,
     "name": "Schwalbe",
     "website": "https://www.schwalbetires.com/",
-    "instagram_tags": ["rideschwalbe"]
+    "instagramTags": ["rideschwalbe"]
   },
   {
     "id": 2,
     "name": "Smith",
     "website": "https://www.smithoptics.com/us/",
-    "instagram_tags": ["smithoptics"]
+    "instagramTags": ["smithoptics"]
   }
 ]
