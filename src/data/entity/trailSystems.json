@@ -64,8 +64,7 @@
   {
     "id": 10,
     "name": "Tiger Mountain",
-    "parkingLotIds": [13, 14],
-    "restaurantIds": []
+    "parkingLotIds": [13, 14]
   },
   {
     "id": 11,

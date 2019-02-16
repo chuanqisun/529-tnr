@@ -1,0 +1,35 @@
+---
+title: Trail Systems
+layout: layouts/base.njk
+---
+<h1>{{ title }}</h1>
+<ul>
+{% for trailSystem in query.trailSystems %}
+  <li>
+    <h2>{{ trailSystem.name }}</h2>
+    <ul>
+      <li>
+      <span>Parking:</span>
+      {% for parkingLot in trailSystem.parkingLots %}
+        <span>{{ parkingLot.name }}</span>
+        <a href="https://www.google.com/maps/search/?api=1&query={{ parkingLot.entranceCoordinates.lat }},{{ parkingLot.entranceCoordinates.lng }}" target="_blank">location</a>
+        {% if parkingLot.parkingPermits %}<span>(requires {{ parkingLot.parkingPermits[0].name }})</span>{% endif %}
+      {% endfor %}
+      </li>
+      <li>
+        <span>Nearby food:</span>
+        {% if trailSystem.restaurants.length > 0 %}
+          {% for restaurant in trailSystem.restaurants %}
+            <span>{{ restaurant.name }}</span>
+          {% endfor %}
+        {% endif %}
+        <a href="https://www.yelp.com/search?cflt=restaurants&dt=1&find_loc={{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}" target="_blank">Yelp nearby</a>
+      </li>
+      <li>
+        <span>Weather:</span>
+        <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Dark Sky nearby</a>
+      </li>
+    </ul>
+  </li>
+{% endfor %}
+</ul>

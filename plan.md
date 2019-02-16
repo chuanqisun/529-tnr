@@ -9,6 +9,11 @@
 8. look up weather info
 9. decide whether to bring lights (sunset time)
 
+# Plan
+1. phase 1, a static site for readers only
+2. phase 2, + ride announce tools
+3. phase 3, + content studio for changing json
+
 # Schema
 1. Trail system
 2. Parking lot
