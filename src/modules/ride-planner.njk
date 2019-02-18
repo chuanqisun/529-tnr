@@ -18,9 +18,8 @@ layout: layouts/base.njk
       <li>
       <span>Parking:</span>
       {% for parkingLot in trailSystem.parkingLots %}
-        <span>{{ parkingLot.name }}</span>
+        <span>{{ parkingLot.name }} {% if parkingLot.parkingPermits %}({{ parkingLot.parkingPermits[0].name }} required){% endif %}</span>
         <a href="https://www.google.com/maps/search/?api=1&query={{ parkingLot.entranceCoordinates.lat }},{{ parkingLot.entranceCoordinates.lng }}" target="_blank">location</a>
-        {% if parkingLot.parkingPermits %}<span>(requires {{ parkingLot.parkingPermits[0].name }})</span>{% endif %}
       {% endfor %}
       </li>
       <li>
