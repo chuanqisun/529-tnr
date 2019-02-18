@@ -2,6 +2,7 @@
 title: Ride Planner
 layout: layouts/base.njk
 ---
+{% include "icons/climacons.njk" %}
 <h1>{{ title }}</h1>
 <ul>
 {% for trailSystem in query.trailSystems %}
@@ -11,26 +12,35 @@ layout: layouts/base.njk
       <li>
         <div>{{ trailSystem.weather.daily.summary }}</div>
         {% for dailyWeather in trailSystem.weather.daily.data %}
-        {{ dailyWeather.icon }}&nbsp;
+          <svg width="64px" height="64px">
+            <use xlink:href="#{{ dailyWeather.icon }}"></use>
+          </svg>
         {% endfor %}
-        <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Dark Sky nearby</a>
+        <div>
+          <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Weather details</a>
+        </div>
       </li>
-      <li>
-      <span>Parking:</span>
-      {% for parkingLot in trailSystem.parkingLots %}
-        <span>{{ parkingLot.name }} {% if parkingLot.parkingPermits %}({{ parkingLot.parkingPermits[0].name }} required){% endif %}</span>
-        <a href="https://www.google.com/maps/search/?api=1&query={{ parkingLot.entranceCoordinates.lat }},{{ parkingLot.entranceCoordinates.lng }}" target="_blank">location</a>
-      {% endfor %}
-      </li>
-      <li>
-        <span>Nearby food:</span>
-        {% if trailSystem.restaurants.length > 0 %}
-          {% for restaurant in trailSystem.restaurants %}
-            <span>{{ restaurant.name }}</span>
-          {% endfor %}
-        {% endif %}
-        <a href="https://www.yelp.com/search?cflt=restaurants&dt=1&find_loc={{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}" target="_blank">Yelp nearby</a>
-      </li>
+      <input id="trailsys-{{ trailSystem.id }}-accordion" class="accordion" type="checkbox">
+      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-collapsed">Show parking and dining</label>
+      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-expanded">Hide parking and dining</label>
+      <div class="accordion__when-expanded">
+        <li>
+        <span>Parking:</span>
+        {% for parkingLot in trailSystem.parkingLots %}
+          <span>{{ parkingLot.name }} {% if parkingLot.parkingPermits %}({{ parkingLot.parkingPermits[0].name }} required){% endif %}</span>
+          <a href="https://www.google.com/maps/search/?api=1&query={{ parkingLot.entranceCoordinates.lat }},{{ parkingLot.entranceCoordinates.lng }}" target="_blank">location</a>
+        {% endfor %}
+        </li>
+        <li>
+          <span>Nearby food:</span>
+          {% if trailSystem.restaurants.length > 0 %}
+            {% for restaurant in trailSystem.restaurants %}
+              <span>{{ restaurant.name }}</span>
+            {% endfor %}
+          {% endif %}
+          <a href="https://www.yelp.com/search?cflt=restaurants&dt=1&find_loc={{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}" target="_blank">Yelp nearby</a>
+        </li>
+      </div>
     </ul>
   </li>
 {% endfor %}

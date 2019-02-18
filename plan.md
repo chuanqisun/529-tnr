@@ -24,5 +24,5 @@
 
 # Reference
 - [CSS-tricks conference](https://github.com/CSS-Tricks/conferences)
-- [CSS-tricks conference behind the scene](https://css-tricks.com/a-site-for-front-end-development-conferences-built-with-11ty-on-netlify/)
+- [CSS-tricks conference source code](https://github.com/CSS-Tricks/conferences)
 - [11ty.io](https://www.11ty.io/)
