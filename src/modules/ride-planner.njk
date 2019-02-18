@@ -1,5 +1,5 @@
 ---
-title: Trail Systems
+title: Ride Planner
 layout: layouts/base.njk
 ---
 <h1>{{ title }}</h1>
@@ -8,6 +8,13 @@ layout: layouts/base.njk
   <li>
     <h2>{{ trailSystem.name }}</h2>
     <ul>
+      <li>
+        <div>{{ trailSystem.weather.daily.summary }}</div>
+        {% for dailyWeather in trailSystem.weather.daily.data %}
+        {{ dailyWeather.icon }}&nbsp;
+        {% endfor %}
+        <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Dark Sky nearby</a>
+      </li>
       <li>
       <span>Parking:</span>
       {% for parkingLot in trailSystem.parkingLots %}
@@ -24,10 +31,6 @@ layout: layouts/base.njk
           {% endfor %}
         {% endif %}
         <a href="https://www.yelp.com/search?cflt=restaurants&dt=1&find_loc={{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}" target="_blank">Yelp nearby</a>
-      </li>
-      <li>
-        <span>Weather:</span>
-        <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Dark Sky nearby</a>
       </li>
     </ul>
   </li>
