@@ -16,8 +16,10 @@ const getParkingLots = ({ id }) => {
 }
 
 const getWeather = async () => {
-  const weatherPromises = trailSystems.map(trailSystem => getWeatherByCoordinates({lat: trailSystem.centerCoordinates[0], lng: trailSystem.centerCoordinates[1]}));
-  const weatherArray = await Promise.all(weatherPromises);
+  // const weatherPromises = trailSystems.map(trailSystem => getWeatherByCoordinates({lat: trailSystem.centerCoordinates[0], lng: trailSystem.centerCoordinates[1]}));
+  // const weatherArray = await Promise.all(weatherPromises);
+  const weatherArray = require('./weather-array.mock.json');
+
   const weatherAtTrailSystems = weatherArray.map((data, index) => ({
     trailSystemId: trailSystems[index].id,
     weather: data,
@@ -32,22 +34,20 @@ const getWeatherByCoordinates = async ({ lat, lng }) => {
   const darkSkyApiSecret = apiKeys.darkSky.secretKey
 
   return new Promise((resolve, reject) => {
-    // https.get(`https://api.darksky.net/forecast/${darkSkyApiSecret}/${lat},${lng}`, response => {
-    //   let body = '';
+    https.get(`https://api.darksky.net/forecast/${darkSkyApiSecret}/${lat},${lng}`, response => {
+      let body = '';
 
-    //   response.on('data', chunk => {
-    //     body += chunk;
-    //   });
+      response.on('data', chunk => {
+        body += chunk;
+      });
 
-    //   response.on('end', () => {
-    //     const result = JSON.parse(body);
-    //     resolve(result);
-    //   });
-    // }).on('error', error => {
-    //   reject(error);
-    // });
-
-    resolve(require('./weather.mock.json'));
+      response.on('end', () => {
+        const result = JSON.parse(body);
+        resolve(result);
+      });
+    }).on('error', error => {
+      reject(error);
+    });
   });
 }
 
@@ -60,5 +60,5 @@ module.exports = async () => {
     parkingLots: trailSystem.parkingLotIds.map(id => getParkingLots({ id })),
     restaurants: trailSystem.restaurantIds && trailSystem.restaurantIds.map(id => restaurants.find(restaurant => restaurant.id === id)),
     weather: weatherAtTrailSystems.find(item => item.trailSystemId === trailSystem.id).weather,
-  }));
+  })).sort((a, b) => a.name.localeCompare(b.name));
 }

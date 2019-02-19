@@ -1,7 +1,66 @@
+/* 01 Typography */
+
 body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
 
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.t-w-12 {
+  width: 8em;
+}
+
+/* 02 Positioning */
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.flex--v {
+  flex-direction: column;
+}
+
+.flex-basis--fixed {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.align-items--center {
+  align-items: center;
+}
+
+.justify-content--space-between {
+  justify-content: space-between;
+}
+
+.justify-content--center {
+  justify-content: center;
+}
+
+.list--reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* todo */
 .accordion {
   display: none;
 }
@@ -16,4 +75,75 @@ body {
 
 .accordion:checked ~ .accordion__when-collapsed {
   display: none;
+}
+
+/* Components */
+.cp-multiday-weather {
+  grid-column-gap: 0.5rem;
+  column-gap: 0.5rem;
+  grid-auto-columns: minmax(auto, 4rem);
+  grid-auto-rows: auto;
+  grid-auto-flow: column;
+
+  overflow: hidden;
+}
+
+.cp-singleday-weather:nth-of-type(1):focus { transform: translate(0) }
+.cp-singleday-weather:nth-of-type(2):focus { transform: translate(calc(-100% - 0.5rem)) }
+.cp-singleday-weather:nth-of-type(3):focus { transform: translate(calc(-200% - 1rem)) }
+.cp-singleday-weather:nth-of-type(4):focus { transform: translate(calc(-300% - 1.5rem)) }
+.cp-singleday-weather:nth-of-type(5):focus { transform: translate(calc(-400% - 2rem)) }
+.cp-singleday-weather:nth-of-type(6):focus { transform: translate(calc(-500% - 2.5rem)) }
+.cp-singleday-weather:nth-of-type(7):focus { transform: translate(calc(-600% - 3rem)) }
+.cp-singleday-weather:nth-of-type(8):focus { transform: translate(calc(-700% - 3.5rem)) }
+
+.experiment {
+  display: none;
+}
+
+.cp-singleday-weather {
+  transition: transform 200ms;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cp-singleday-weather:focus {
+  background-color: white;
+  outline: none;
+}
+
+.cp-singleday-weather::after {
+  opacity: 0;
+  transition: opacity 200ms;
+  content: '';
+}
+
+.cp-singleday-weather:focus::after {
+  content: attr(title);
+  position: absolute;
+  background-color: white;
+  left: calc(0.5rem + 100%);
+  height: 100%;
+  width: calc(3rem + 700%);
+  opacity: 1;
+}
+
+.cp-blur-trigger__host {
+  position: relative;
+}
+
+.cp-blur-trigger__overlay {
+  display: none;
+}
+
+.cp-singleday-weather:focus ~ .cp-blur-trigger__overlay {
+  display: initial;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cp-trail-system {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }

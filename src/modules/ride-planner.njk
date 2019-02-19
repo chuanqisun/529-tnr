@@ -4,26 +4,37 @@ layout: layouts/base.njk
 ---
 {% include "icons/climacons.njk" %}
 <h1>{{ title }}</h1>
-<ul>
+<ul class="list--reset">
 {% for trailSystem in query.trailSystems %}
-  <li>
+  <li class="cp-trail-system">
     <h2>{{ trailSystem.name }}</h2>
-    <ul>
-      <li>
-        <div>{{ trailSystem.weather.daily.summary }}</div>
-        {% for dailyWeather in trailSystem.weather.daily.data %}
-          <svg width="64px" height="64px">
-            <use xlink:href="#{{ dailyWeather.icon }}"></use>
-          </svg>
-        {% endfor %}
-        <div>
-          <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Weather details</a>
+    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+      {% for dailyWeather in trailSystem.weather.daily.data %}
+      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="{{ dailyWeather.summary }} {{ dailyWeather.precipProbability | decimalToPercentage}} chance of {{ dailyWeather.precipType | friendlyPrecipitationType}}. Feels like {{ dailyWeather.apparentTemperatureMax | roundToIntTemperatureF }} at {{ dailyWeather.apparentTemperatureMaxTime | localeTime }}, {{ dailyWeather.apparentTemperatureMin | roundToIntTemperatureF }} at {{ dailyWeather.apparentTemperatureMinTime | localeTime }}. Sunset at {{ dailyWeather.sunsetTime | localeTime }}.">
+        <time datetime="{{ dailyWeather.time | isoDate }}">{{ dailyWeather.time | dayOfWeek }}</time>
+        <svg width="32px" height="32px">
+          <title>{{ dailyWeather.summary }}</title>
+          <use xlink:href="#{{ dailyWeather.icon }}"></use>
+        </svg>
+        <div class="flex flex--wrap justify-content--center">
+          <span>{{ dailyWeather.temperatureHigh | roundToIntTemperatureF }}</span>
+          <span>{{ dailyWeather.temperatureLow | roundToIntTemperatureF }}</span>
         </div>
       </li>
+      {% endfor %}
+      <div tabindex="0" class="cp-blur-trigger__overlay"></div>
+    </ul>
+    {# <ul>
       <input id="trailsys-{{ trailSystem.id }}-accordion" class="accordion" type="checkbox">
-      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-collapsed">Show parking and dining</label>
-      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-expanded">Hide parking and dining</label>
+      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-collapsed">Show work in progress features</label>
+      <label for="trailsys-{{ trailSystem.id }}-accordion" class="accordion__when-expanded">Hide work in progress features</label>
       <div class="accordion__when-expanded">
+        <li>
+          <div>{{ trailSystem.weather.daily.summary }}</div>
+          <div>
+            <a href="https://darksky.net/forecast/{{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}/us12/en" target="_blank">Weather details</a>
+          </div>
+        </li>
         <li>
         <span>Parking:</span>
         {% for parkingLot in trailSystem.parkingLots %}
@@ -41,7 +52,7 @@ layout: layouts/base.njk
           <a href="https://www.yelp.com/search?cflt=restaurants&dt=1&find_loc={{ trailSystem.parkingLots[0].entranceCoordinates.lat }},{{ trailSystem.parkingLots[0].entranceCoordinates.lng }}" target="_blank">Yelp nearby</a>
         </li>
       </div>
-    </ul>
+    </ul> #}
   </li>
 {% endfor %}
 </ul>
