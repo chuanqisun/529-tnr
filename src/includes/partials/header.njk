@@ -1,0 +1,12 @@
+<h1>529 Ride Planner</h1>
+<nav class="cp-nav-links">
+{% for tool in collections.tool %}
+  {% if page.url == tool.url %}
+  <span class="cp-nav-link cp-nav-link--active">{{ tool.data.title }}</span>
+  {% endif %}
+  {% if page.url != tool.url %}
+  <a class="cp-nav-link" href="{{ tool.url}}">{{ tool.data.title }}</a>
+  {% endif %}
+  {% if not loop.last %}·{% endif %}
+{% endfor %}
+</nav>

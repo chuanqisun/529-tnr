@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ride Planner</title>
+    <title>Weather</title>
     
     <style>
       
-      /* 01 Typography */
+      /* 01 Reset */
+ul,ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
+/* 02 Typography */
 body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
@@ -23,50 +29,6 @@ h2 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-}
-
-.t-w-12 {
-  width: 8em;
-}
-
-/* 02 Positioning */
-.grid {
-  display: grid;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex--wrap {
-  flex-wrap: wrap;
-}
-
-.flex--v {
-  flex-direction: column;
-}
-
-.flex-basis--fixed {
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.align-items--center {
-  align-items: center;
-}
-
-.justify-content--space-between {
-  justify-content: space-between;
-}
-
-.justify-content--center {
-  justify-content: center;
-}
-
-.list--reset {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 /* todo */
@@ -88,8 +50,10 @@ h2 {
 
 /* Components */
 .cp-multiday-weather {
-  grid-column-gap: 0.5rem;
-  column-gap: 0.5rem;
+  --gap-size: 0.25rem;
+  display: grid;
+  grid-column-gap: var(--gap-size);
+  column-gap: var(--gap-size);
   grid-auto-columns: minmax(auto, 4rem);
   grid-auto-rows: auto;
   grid-auto-flow: column;
@@ -98,22 +62,24 @@ h2 {
 }
 
 .cp-singleday-weather:nth-of-type(1):focus { transform: translate(0) }
-.cp-singleday-weather:nth-of-type(2):focus { transform: translate(calc(-100% - 0.5rem)) }
-.cp-singleday-weather:nth-of-type(3):focus { transform: translate(calc(-200% - 1rem)) }
-.cp-singleday-weather:nth-of-type(4):focus { transform: translate(calc(-300% - 1.5rem)) }
-.cp-singleday-weather:nth-of-type(5):focus { transform: translate(calc(-400% - 2rem)) }
-.cp-singleday-weather:nth-of-type(6):focus { transform: translate(calc(-500% - 2.5rem)) }
-.cp-singleday-weather:nth-of-type(7):focus { transform: translate(calc(-600% - 3rem)) }
-.cp-singleday-weather:nth-of-type(8):focus { transform: translate(calc(-700% - 3.5rem)) }
+.cp-singleday-weather:nth-of-type(2):focus { transform: translate(calc(-1 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(3):focus { transform: translate(calc(-2 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(4):focus { transform: translate(calc(-3 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(5):focus { transform: translate(calc(-4 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(6):focus { transform: translate(calc(-5 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(7):focus { transform: translate(calc(-6 * (100% + var(--gap-size)))) }
+.cp-singleday-weather:nth-of-type(8):focus { transform: translate(calc(-7 * (100% + var(--gap-size)))) }
 
 .experiment {
   display: none;
 }
 
 .cp-singleday-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 200ms;
   cursor: pointer;
-  border-radius: 4px;
 }
 
 .cp-singleday-weather:focus {
@@ -131,9 +97,9 @@ h2 {
   content: attr(title);
   position: absolute;
   background-color: white;
-  left: calc(0.5rem + 100%);
+  left: calc(100% + var(--gap-size));
   height: 100%;
-  width: calc(3rem + 700%);
+  width: calc(7 * (100% + var(--gap-size)));
   opacity: 1;
 }
 
@@ -152,9 +118,23 @@ h2 {
   height: 100%;
 }
 
+.cp-temperature-bracket {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .cp-trail-system {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.cp-nav-link {
+  font-size: 1.25rem;
+}
+
+.cp-nav-link--active {
+  font-weight: 600;
 }
     
     </style>
@@ -192,104 +172,125 @@ h2 {
     <path fill-rule="evenodd" clip-rule="evenodd" d="M58.746 51.588V51.639H57.997H54.997C53.893 51.639 52.997 50.744 52.997 49.639C52.997 48.535 53.893 47.64 54.997 47.64H57.997C59.101 47.64 59.996 46.744 59.996 45.64C59.996 44.536 59.101 43.641 57.997 43.641C56.893 43.641 55.997 42.745 55.997 41.641C55.997 40.536 56.893 39.641 57.997 39.641C58.135 39.641 58.269 39.655 58.399 39.682C61.521 39.893 63.996 42.465 63.996 45.64C63.996 48.698 61.705 51.217 58.746 51.588ZM47.998 39.641C46.894 39.641 45.998 38.745 45.998 37.641C45.998 36.537 46.894 35.641 47.998 35.641C48.136 35.641 48.27 35.655 48.401 35.682C51.522 35.893 53.997 38.465 53.997 41.641C53.997 44.7 51.706 47.218 48.748 47.588V47.64H47.998H40.013C36.001 47.64 28.655 47.64 26.001 47.64C24.897 47.64 24.001 48.536 24.001 49.639C24.001 50.744 24.897 51.639 26.001 51.639H47.998H48.748V51.692C51.706 52.061 53.997 54.581 53.997 57.639C53.997 60.814 51.522 63.386 48.401 63.597C48.27 63.623 48.135 63.638 47.998 63.638C46.894 63.638 45.998 62.742 45.998 61.638C45.998 60.534 46.894 59.639 47.998 59.639C49.102 59.639 49.998 58.743 49.998 57.639C49.998 56.534 49.102 55.639 47.998 55.639H26.001H25.251V55.587C22.292 55.217 20.001 52.697 20.001 49.639C20.001 48.584 20.295 47.607 20.774 46.749C14.509 44.581 10.003 38.645 10.003 31.642C10.003 22.807 17.165 15.644 26.001 15.644C32.005 15.644 37.23 18.956 39.966 23.848C40.63 23.734 41.302 23.643 41.999 23.643C47.895 23.643 52.787 27.899 53.797 33.505C52.402 32.51 50.747 31.859 48.948 31.69C47.571 29.274 44.977 27.643 41.999 27.643C40.398 27.643 38.915 28.123 37.665 28.933C36.434 23.617 31.692 19.643 26.001 19.643C19.374 19.643 14.002 25.015 14.002 31.642C14.002 38.268 19.374 43.641 26.001 43.641C28.599 43.641 34.153 43.641 38.2 43.641H47.998C49.102 43.641 49.998 42.745 49.998 41.641C49.998 40.535 49.103 39.641 47.998 39.641Z" fill="currentColor"/>
   </symbol>
 </svg>
-<h1>Ride Planner</h1>
-<ul class="list--reset">
+<h1>529 Ride Planner</h1>
+<nav class="cp-nav-links">
+
+  
+  <span class="cp-nav-link cp-nav-link--active">Weather</span>
+  
+  
+  ·
+
+  
+  
+  <a class="cp-nav-link" href="/collections/parking/">Parking</a>
+  
+  ·
+
+  
+  
+  <a class="cp-nav-link" href="/collections/food/">Food</a>
+  
+  
+
+</nav>
+<ul>
 
   <li class="cp-trail-system">
     <h2>Cherry Valley</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 43% chance of snow. Feels like 39° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 43% chance of snow. Feels like 39° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>30°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 87% chance of rain. Feels like 36° at 4:00 PM, 26° at 2:00 AM. Sunset at 5:37 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 87% chance of rain. Feels like 36° at 4:00 PM, 26° at 2:00 AM. Sunset at 5:37 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 86% chance of rain. Feels like 35° at 3:00 PM, 28° at 10:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 86% chance of rain. Feels like 35° at 3:00 PM, 28° at 10:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow (&lt; 1 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 40° at 3:00 PM, 16° at 7:00 AM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 40° at 3:00 PM, 16° at 7:00 AM. Sunset at 5:40 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 87% chance of rain. Feels like 36° at 9:00 PM, 22° at 2:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 87% chance of rain. Feels like 36° at 9:00 PM, 22° at 2:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 72% chance of snow. Feels like 39° at 2:00 PM, 28° at 11:00 PM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 72% chance of snow. Feels like 39° at 2:00 PM, 28° at 11:00 PM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy starting in the afternoon. 19% chance of snow. Feels like 40° at 3:00 PM, 22° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy starting in the afternoon. 19% chance of snow. Feels like 40° at 3:00 PM, 22° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy starting in the afternoon.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>24°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 26% chance of snow. Feels like 40° at 2:00 PM, 20° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 26% chance of snow. Feels like 40° at 2:00 PM, 20° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy starting in the afternoon.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>23°</span>
         </div>
@@ -302,99 +303,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Duthie</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of rain. Feels like 41° at 4:00 PM, 29° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of rain. Feels like 41° at 4:00 PM, 29° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 90% chance of rain. Feels like 37° at 6:00 PM, 28° at 1:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 90% chance of rain. Feels like 37° at 6:00 PM, 28° at 1:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 87% chance of rain. Feels like 37° at 3:00 PM, 30° at 10:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 87% chance of rain. Feels like 37° at 3:00 PM, 30° at 10:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 17% chance of snow. Feels like 41° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 17% chance of snow. Feels like 41° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>42°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 84% chance of rain. Feels like 38° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 84% chance of rain. Feels like 38° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation in the evening and overnight.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the afternoon. 82% chance of rain. Feels like 36° at 2:00 PM, 30° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the afternoon. 82% chance of rain. Feels like 36° at 2:00 PM, 30° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 22% chance of snow. Feels like 41° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 22% chance of snow. Feels like 41° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 31% chance of snow. Feels like 39° at 2:00 PM, 28° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 31% chance of snow. Feels like 39° at 2:00 PM, 28° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>25°</span>
         </div>
@@ -407,99 +408,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Grand Ridge</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of snow. Feels like 38° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of snow. Feels like 38° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>38°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 90% chance of rain. Feels like 34° at 6:00 PM, 26° at 12:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 90% chance of rain. Feels like 34° at 6:00 PM, 26° at 12:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>30°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow in the morning. 87% chance of snow. Feels like 33° at 2:00 PM, 27° at 10:00 PM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow in the morning. 87% chance of snow. Feels like 33° at 2:00 PM, 27° at 10:00 PM. Sunset at 5:40 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>37°</span>
           <span>25°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 37° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 37° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 83% chance of rain. Feels like 33° at 1:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 83% chance of rain. Feels like 33° at 1:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation in the evening and overnight.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the afternoon. 84% chance of snow. Feels like 35° at 11:00 AM, 28° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the afternoon. 84% chance of snow. Feels like 35° at 11:00 AM, 28° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>37°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 39° at 2:00 PM, 22° at 7:00 AM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 39° at 2:00 PM, 22° at 7:00 AM. Sunset at 5:46 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 32% chance of snow. Feels like 36° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 32% chance of snow. Feels like 36° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>38°</span>
           <span>25°</span>
         </div>
@@ -512,99 +513,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Olallie</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 43% chance of snow. Feels like 31° at 3:00 PM, 26° at 8:00 AM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 43% chance of snow. Feels like 31° at 3:00 PM, 26° at 8:00 AM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>31°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (7–10 in.) throughout the day. 85% chance of snow. Feels like 28° at 12:00 AM, 22° at 8:00 AM. Sunset at 5:37 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (7–10 in.) throughout the day. 85% chance of snow. Feels like 28° at 12:00 AM, 22° at 8:00 AM. Sunset at 5:37 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Snow (7–10 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>33°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning. 82% chance of snow. Feels like 25° at 7:00 PM, 20° at 11:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning. 82% chance of snow. Feels like 25° at 7:00 PM, 20° at 11:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Snow (1–2 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>30°</span>
           <span>19°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy throughout the day. 26% chance of snow. Feels like 32° at 2:00 PM, 11° at 7:00 AM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy throughout the day. 26% chance of snow. Feels like 32° at 2:00 PM, 11° at 7:00 AM. Sunset at 5:40 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (3–7 in.) throughout the day. 80% chance of snow. Feels like 29° at 1:00 PM, 20° at 12:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (3–7 in.) throughout the day. 80% chance of snow. Feels like 29° at 1:00 PM, 20° at 12:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Snow (3–7 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (1–3 in.) until evening. 80% chance of snow. Feels like 32° at 3:00 PM, 22° at 10:00 PM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (1–3 in.) until evening. 80% chance of snow. Feels like 32° at 3:00 PM, 22° at 10:00 PM. Sunset at 5:43 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Snow (1–3 in.) until evening.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 32° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 32° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy starting in the afternoon. 48% chance of snow. Feels like 28° at 2:00 PM, 22° at 11:00 PM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy starting in the afternoon. 48% chance of snow. Feels like 28° at 2:00 PM, 22° at 11:00 PM. Sunset at 5:46 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy starting in the afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>20°</span>
         </div>
@@ -617,99 +618,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Paradise Valley</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 42% chance of snow. Feels like 39° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 42% chance of snow. Feels like 39° at 4:00 PM, 27° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>30°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light rain starting in the afternoon. 87% chance of rain. Feels like 35° at 5:00 PM, 26° at 1:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light rain starting in the afternoon. 87% chance of rain. Feels like 35° at 5:00 PM, 26° at 1:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Light rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 84% chance of rain. Feels like 35° at 12:00 AM, 28° at 10:00 PM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 84% chance of rain. Feels like 35° at 12:00 AM, 28° at 10:00 PM. Sunset at 5:40 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>24°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 11% chance of snow. Feels like 40° at 3:00 PM, 21° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 11% chance of snow. Feels like 40° at 3:00 PM, 21° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>42°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 85% chance of rain. Feels like 36° at 3:00 PM, 23° at 1:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 85% chance of rain. Feels like 36° at 3:00 PM, 23° at 1:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 72% chance of snow. Feels like 35° at 11:00 AM, 27° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 72% chance of snow. Feels like 35° at 11:00 AM, 27° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy starting in the afternoon. 23% chance of snow. Feels like 40° at 2:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy starting in the afternoon. 23% chance of snow. Feels like 40° at 2:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy starting in the afternoon.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>25°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 27% chance of snow. Feels like 37° at 2:00 PM, 25° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 27% chance of snow. Feels like 37° at 2:00 PM, 25° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy starting in the afternoon.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>23°</span>
         </div>
@@ -722,99 +723,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Raging River</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of snow. Feels like 32° at 3:00 PM, 24° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of snow. Feels like 32° at 3:00 PM, 24° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (6–9 in.) throughout the day. 89% chance of snow. Feels like 27° at 9:00 PM, 22° at 8:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (6–9 in.) throughout the day. 89% chance of snow. Feels like 27° at 9:00 PM, 22° at 8:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Snow (6–9 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>33°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning. 87% chance of snow. Feels like 27° at 2:00 PM, 21° at 11:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning. 87% chance of snow. Feels like 27° at 2:00 PM, 21° at 11:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Snow (1–2 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>32°</span>
           <span>20°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 24% chance of snow. Feels like 34° at 3:00 PM, 13° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 24% chance of snow. Feels like 34° at 3:00 PM, 13° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>23°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (3–6 in.) throughout the day. 82% chance of snow. Feels like 30° at 1:00 PM, 19° at 4:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (3–6 in.) throughout the day. 82% chance of snow. Feels like 30° at 1:00 PM, 19° at 4:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Snow (3–6 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>35°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) until evening. 84% chance of snow. Feels like 33° at 2:00 PM, 24° at 10:00 PM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) until evening. 84% chance of snow. Feels like 33° at 2:00 PM, 24° at 10:00 PM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Snow (1–2 in.) until evening.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>33°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 24% chance of snow. Feels like 34° at 3:00 PM, 17° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 24% chance of snow. Feels like 34° at 3:00 PM, 17° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>23°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 42% chance of snow. Feels like 31° at 3:00 PM, 22° at 12:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 42% chance of snow. Feels like 31° at 3:00 PM, 22° at 12:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>20°</span>
         </div>
@@ -827,99 +828,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Soaring Eagle</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of rain. Feels like 41° at 4:00 PM, 29° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 43% chance of rain. Feels like 41° at 4:00 PM, 29° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 89% chance of rain. Feels like 36° at 5:00 PM, 28° at 1:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 89% chance of rain. Feels like 36° at 5:00 PM, 28° at 1:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow in the morning. 87% chance of rain. Feels like 36° at 3:00 PM, 30° at 10:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow in the morning. 87% chance of rain. Feels like 36° at 3:00 PM, 30° at 10:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>25°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 17% chance of snow. Feels like 40° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 17% chance of snow. Feels like 40° at 3:00 PM, 20° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>42°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 84% chance of rain. Feels like 37° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation in the evening and overnight. 84% chance of rain. Feels like 37° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation in the evening and overnight.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 81% chance of rain. Feels like 36° at 2:00 PM, 30° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 81% chance of rain. Feels like 36° at 2:00 PM, 30° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 21% chance of snow. Feels like 41° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 21% chance of snow. Feels like 41° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:46 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 30% chance of snow. Feels like 39° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 30% chance of snow. Feels like 39° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>25°</span>
         </div>
@@ -932,99 +933,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>St. Edwards Park</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 46% chance of rain. Feels like 40° at 3:00 PM, 29° at 11:00 PM. Sunset at 5:37 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 46% chance of rain. Feels like 40° at 3:00 PM, 29° at 11:00 PM. Sunset at 5:37 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light rain starting in the afternoon. 86% chance of rain. Feels like 36° at 7:00 PM, 28° at 2:00 AM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light rain starting in the afternoon. 86% chance of rain. Feels like 36° at 7:00 PM, 28° at 2:00 AM. Sunset at 5:39 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Light rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 83% chance of rain. Feels like 35° at 12:00 AM, 29° at 11:00 PM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 83% chance of rain. Feels like 35° at 12:00 AM, 29° at 11:00 PM. Sunset at 5:40 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 10% chance of snow. Feels like 40° at 3:00 PM, 26° at 5:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 10% chance of snow. Feels like 40° at 3:00 PM, 26° at 5:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>43°</span>
           <span>29°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the evening. 84% chance of rain. Feels like 37° at 4:00 PM, 24° at 1:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the evening. 84% chance of rain. Feels like 37° at 4:00 PM, 24° at 1:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation starting in the evening.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Overcast throughout the day. 77% chance of snow. Feels like 35° at 1:00 PM, 28° at 4:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Overcast throughout the day. 77% chance of snow. Feels like 35° at 1:00 PM, 28° at 4:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Overcast throughout the day.</title>
           <use xlink:href="#cloudy"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>38°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy starting in the evening. 39% chance of snow. Feels like 39° at 2:00 PM, 24° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy starting in the evening. 39% chance of snow. Feels like 39° at 2:00 PM, 24° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy starting in the evening.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 34% chance of snow. Feels like 36° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:48 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 34% chance of snow. Feels like 36° at 2:00 PM, 27° at 7:00 AM. Sunset at 5:48 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>25°</span>
         </div>
@@ -1037,99 +1038,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Tiger Mountain</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 41% chance of snow. Feels like 34° at 4:00 PM, 23° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 41% chance of snow. Feels like 34° at 4:00 PM, 23° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (5–8 in.) throughout the day. 91% chance of snow. Feels like 29° at 6:00 PM, 22° at 12:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (5–8 in.) throughout the day. 91% chance of snow. Feels like 29° at 6:00 PM, 22° at 12:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Snow (5–8 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>35°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (&lt; 1 in.) in the morning. 87% chance of snow. Feels like 30° at 2:00 PM, 22° at 11:00 PM. Sunset at 5:40 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (&lt; 1 in.) in the morning. 87% chance of snow. Feels like 30° at 2:00 PM, 22° at 11:00 PM. Sunset at 5:40 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Snow (&lt; 1 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 20% chance of snow. Feels like 34° at 3:00 PM, 15° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 20% chance of snow. Feels like 34° at 3:00 PM, 15° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>36°</span>
           <span>23°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (2–4 in.) throughout the day. 82% chance of snow. Feels like 29° at 1:00 PM, 20° at 4:00 AM. Sunset at 5:43 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (2–4 in.) throughout the day. 82% chance of snow. Feels like 29° at 1:00 PM, 20° at 4:00 AM. Sunset at 5:43 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Snow (2–4 in.) throughout the day.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>36°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning and afternoon. 85% chance of snow. Feels like 32° at 11:00 AM, 24° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (1–2 in.) in the morning and afternoon. 85% chance of snow. Feels like 32° at 11:00 AM, 24° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Snow (1–2 in.) in the morning and afternoon.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>34°</span>
           <span>22°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Snow (&lt; 1 in.) starting in the evening. 25% chance of snow. Feels like 36° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:46 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Snow (&lt; 1 in.) starting in the evening. 25% chance of snow. Feels like 36° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:46 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Snow (&lt; 1 in.) starting in the evening.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>36°</span>
           <span>23°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 35% chance of snow. Feels like 33° at 3:00 PM, 23° at 1:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 35% chance of snow. Feels like 33° at 3:00 PM, 23° at 1:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>36°</span>
           <span>21°</span>
         </div>
@@ -1142,99 +1143,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Tokul East</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of rain. Feels like 40° at 4:00 PM, 30° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of rain. Feels like 40° at 4:00 PM, 30° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 88% chance of rain. Feels like 36° at 5:00 PM, 29° at 7:00 AM. Sunset at 5:37 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 88% chance of rain. Feels like 36° at 5:00 PM, 29° at 7:00 AM. Sunset at 5:37 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of snow. Feels like 36° at 3:00 PM, 28° at 11:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of snow. Feels like 36° at 3:00 PM, 28° at 11:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow (&lt; 1 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>24°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 23% chance of snow. Feels like 41° at 3:00 PM, 17° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 23% chance of snow. Feels like 41° at 3:00 PM, 17° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon, continuing until evening. 84% chance of rain. Feels like 36° at 11:00 PM, 24° at 2:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon, continuing until evening. 84% chance of rain. Feels like 36° at 11:00 PM, 24° at 2:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon, continuing until evening.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 82% chance of rain. Feels like 39° at 2:00 PM, 30° at 11:00 PM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 82% chance of rain. Feels like 39° at 2:00 PM, 30° at 11:00 PM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 40° at 3:00 PM, 24° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 23% chance of snow. Feels like 40° at 3:00 PM, 24° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 36% chance of snow. Feels like 38° at 3:00 PM, 28° at 1:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 36% chance of snow. Feels like 38° at 3:00 PM, 28° at 1:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>26°</span>
         </div>
@@ -1247,99 +1248,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Tokul West</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of rain. Feels like 40° at 4:00 PM, 30° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 42% chance of rain. Feels like 40° at 4:00 PM, 30° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 88% chance of rain. Feels like 36° at 5:00 PM, 29° at 7:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 88% chance of rain. Feels like 36° at 5:00 PM, 29° at 7:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of rain. Feels like 36° at 3:00 PM, 28° at 11:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of rain. Feels like 36° at 3:00 PM, 28° at 11:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow (&lt; 1 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>24°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 22% chance of snow. Feels like 41° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 22% chance of snow. Feels like 41° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 84% chance of rain. Feels like 38° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 84% chance of rain. Feels like 38° at 9:00 PM, 24° at 2:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>33°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 81% chance of rain. Feels like 39° at 2:00 PM, 31° at 10:00 PM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 81% chance of rain. Feels like 39° at 2:00 PM, 31° at 10:00 PM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 22% chance of snow. Feels like 40° at 3:00 PM, 24° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 22% chance of snow. Feels like 40° at 3:00 PM, 24° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>28°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 34% chance of snow. Feels like 38° at 3:00 PM, 28° at 1:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy throughout the day. 34% chance of snow. Feels like 38° at 3:00 PM, 28° at 1:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy throughout the day.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>26°</span>
         </div>
@@ -1352,99 +1353,99 @@ h2 {
 
   <li class="cp-trail-system">
     <h2>Tolt MacDonald Park</h2>
-    <ul class="list--reset grid cp-multiday-weather cp-blur-trigger__host">
+    <ul class="cp-multiday-weather cp-blur-trigger__host">
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 44% chance of rain. Feels like 40° at 4:00 PM, 28° at 11:00 PM. Sunset at 5:36 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy until afternoon. 44% chance of rain. Feels like 40° at 4:00 PM, 28° at 11:00 PM. Sunset at 5:36 PM.">
         <time datetime="2019-02-18T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Foggy until afternoon.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 89% chance of rain. Feels like 35° at 5:00 PM, 27° at 1:00 AM. Sunset at 5:38 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Rain starting in the afternoon. 89% chance of rain. Feels like 35° at 5:00 PM, 27° at 1:00 AM. Sunset at 5:38 PM.">
         <time datetime="2019-02-19T08:00:00.000Z">Tu</time>
         <svg width="32px" height="32px">
           <title>Rain starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>31°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of rain. Feels like 35° at 3:00 PM, 29° at 10:00 PM. Sunset at 5:39 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Light snow (&lt; 1 in.) in the morning. 87% chance of rain. Feels like 35° at 3:00 PM, 29° at 10:00 PM. Sunset at 5:39 PM.">
         <time datetime="2019-02-20T08:00:00.000Z">W</time>
         <svg width="32px" height="32px">
           <title>Light snow (&lt; 1 in.) in the morning.</title>
           <use xlink:href="#snow"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>24°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 40° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:41 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Partly cloudy in the morning. 18% chance of snow. Feels like 40° at 3:00 PM, 18° at 7:00 AM. Sunset at 5:41 PM.">
         <time datetime="2019-02-21T08:00:00.000Z">Th</time>
         <svg width="32px" height="32px">
           <title>Partly cloudy in the morning.</title>
           <use xlink:href="#partly-cloudy-day"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>41°</span>
           <span>27°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 85% chance of rain. Feels like 37° at 9:00 PM, 23° at 2:00 AM. Sunset at 5:42 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mixed precipitation starting in the afternoon. 85% chance of rain. Feels like 37° at 9:00 PM, 23° at 2:00 AM. Sunset at 5:42 PM.">
         <time datetime="2019-02-22T08:00:00.000Z">F</time>
         <svg width="32px" height="32px">
           <title>Mixed precipitation starting in the afternoon.</title>
           <use xlink:href="#rain"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>32°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy in the morning. 79% chance of snow. Feels like 36° at 2:00 PM, 29° at 7:00 AM. Sunset at 5:44 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy in the morning. 79% chance of snow. Feels like 36° at 2:00 PM, 29° at 7:00 AM. Sunset at 5:44 PM.">
         <time datetime="2019-02-23T08:00:00.000Z">Sa</time>
         <svg width="32px" height="32px">
           <title>Foggy in the morning.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>39°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Foggy overnight. 20% chance of snow. Feels like 40° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:45 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Foggy overnight. 20% chance of snow. Feels like 40° at 3:00 PM, 23° at 7:00 AM. Sunset at 5:45 PM.">
         <time datetime="2019-02-24T08:00:00.000Z">Su</time>
         <svg width="32px" height="32px">
           <title>Foggy overnight.</title>
           <use xlink:href="#fog"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>26°</span>
         </div>
       </li>
       
-      <li class="flex flex--v align-items--center cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 30% chance of snow. Feels like 39° at 1:00 PM, 26° at 7:00 AM. Sunset at 5:47 PM.">
+      <li class="cp-singleday-weather" tabindex="0" title="Mostly cloudy starting in the afternoon. 30% chance of snow. Feels like 39° at 1:00 PM, 26° at 7:00 AM. Sunset at 5:47 PM.">
         <time datetime="2019-02-25T08:00:00.000Z">M</time>
         <svg width="32px" height="32px">
           <title>Mostly cloudy starting in the afternoon.</title>
           <use xlink:href="#partly-cloudy-night"></use>
         </svg>
-        <div class="flex flex--wrap justify-content--center">
+        <div class="cp-temperature-bracket">
           <span>40°</span>
           <span>24°</span>
         </div>
