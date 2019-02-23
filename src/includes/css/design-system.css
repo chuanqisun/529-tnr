@@ -104,6 +104,7 @@ h2 {
 
 .cp-singleday-weather:focus ~ .cp-blur-trigger__overlay {
   display: initial;
+  cursor: pointer;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -117,7 +118,16 @@ h2 {
 
 .cp-trail-system {
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cp-trail-system-detail-list li {
+  margin: 0.5rem 0;
+}
+
+.cp-nav-links {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .cp-nav-link {
@@ -126,4 +136,13 @@ h2 {
 
 .cp-nav-link--active {
   font-weight: 600;
+}
+
+.cp-icon-link {
+}
+
+.cp-icon-link__icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
 }

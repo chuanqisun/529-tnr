@@ -18,7 +18,7 @@
     "name": "Tokul East",
     "parkingLotIds": [3],
     "restaurantIds": [2],
-    "trailPermitIds": [1],
+    "trailPermitId": 0,
     "centerCoordinates": [47.570393, -121.845865]
   },
   {
@@ -26,7 +26,7 @@
     "name": "Tokul West",
     "parkingLotIds": [4],
     "restaurantIds": [2],
-    "trailPermitIds": [1],
+    "trailPermitId": 0,
     "centerCoordinates": [47.586866, -121.872793]
   },
   {

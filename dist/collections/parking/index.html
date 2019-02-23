@@ -113,6 +113,7 @@ h2 {
 
 .cp-singleday-weather:focus ~ .cp-blur-trigger__overlay {
   display: initial;
+  cursor: pointer;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -126,7 +127,16 @@ h2 {
 
 .cp-trail-system {
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cp-trail-system-detail-list li {
+  margin: 0.5rem 0;
+}
+
+.cp-nav-links {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .cp-nav-link {
@@ -135,6 +145,15 @@ h2 {
 
 .cp-nav-link--active {
   font-weight: 600;
+}
+
+.cp-icon-link {
+}
+
+.cp-icon-link__icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
 }
     
     </style>
@@ -194,114 +213,240 @@ h2 {
   
 
 </nav>
+
 <ul>
 
   <li class="cp-trail-system">
     <h2>Cherry Valley</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Street parking by Mountain View Rd NE </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.745893,-121.908317" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.745893,-121.908317" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Street parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.745893,-121.908317" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Duthie</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Duthie winter lot </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.584119,-121.976644" target="_blank">location</a>
     
-      <span>Duthie summer lot </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.572383,-121.988567" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.584119,-121.976644" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Winter lot parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.584119,-121.976644" target="_blank">directions</a>
+      </li>
+      
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.572383,-121.988567" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Summer lot (close at dusk) parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.572383,-121.988567" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Grand Ridge</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>East Sunset Way trailhead </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.529896,-122.025725" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.529896,-122.025725" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.529896,-122.025725" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Olallie</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Cedar Falls trailhead </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.432548,-121.766458" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.432548,-121.766458" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.432548,-121.766458" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Paradise Valley</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Paradise Valley trailhead </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.789007,-122.080139" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.789007,-122.080139" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.789007,-122.080139" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Raging River</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Rattlesnake Mountain Trail parking lot (Discovery Pass required)</span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.509592,-121.844198" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.509592,-121.844198" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.509592,-121.844198" target="_blank">directions</a>
+      </li>
+      
+      <li>
+        <a class="cp-icon-link" href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank"><img class="cp-icon-link__icon" src="/assets/discoverpass.png"/></a>
+        <span>Trailhead parking requires <a href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank">Discover Pass</a></span>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Soaring Eagle</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Soaring Eagle water tower </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.611934,-121.991792" target="_blank">location</a>
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.611934,-121.991792" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.611934,-121.991792" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>St. Edwards Park</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>St.Edwards park (Discovery Pass required)</span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.733163,-122.255898" target="_blank">location</a>
     
-      <span>QFC parking lot </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.529896,-122.025725" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.733163,-122.255898" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Park parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.733163,-122.255898" target="_blank">directions</a>
+      </li>
+      
+      <li>
+        <a class="cp-icon-link" href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank"><img class="cp-icon-link__icon" src="/assets/discoverpass.png"/></a>
+        <span>Park parking requires <a href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank">Discover Pass</a></span>
+      </li>
+      
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.529896,-122.025725" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>QFC parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.529896,-122.025725" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Tiger Mountain</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Tiger Mountain lower lot </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.466405,-121.931122" target="_blank">location</a>
     
-      <span>Tiger Mountain upper lot (Discovery Pass required)</span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.467693,-121.936664" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.466405,-121.931122" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Lower lot parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.466405,-121.931122" target="_blank">directions</a>
+      </li>
+      
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.467693,-121.936664" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Upper lot parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.467693,-121.936664" target="_blank">directions</a>
+      </li>
+      
+      <li>
+        <a class="cp-icon-link" href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank"><img class="cp-icon-link__icon" src="/assets/discoverpass.png"/></a>
+        <span>Upper lot parking requires <a href="https://discoverpass.wa.gov/133/Where-to-Buy" target="_blank">Discover Pass</a></span>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Tokul East</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Tokul East trailhead </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.56772,-121.865428" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="http://sqrecreation.com/snoqualmie/about/non-motorized-recreation-access-families/non-motorized-recreation-access-families" target="_blank"><img class="cp-icon-link__icon" src="/assets/campbell.png"/></a>
+        <span>Trail requires <a href="http://sqrecreation.com/snoqualmie/about/non-motorized-recreation-access-families/non-motorized-recreation-access-families" target="_blank">Campbell Global Snoqualmie Forest Permit</a></span>
+      </li>
     
+    
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.56772,-121.865428" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Trailhead parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.56772,-121.865428" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Tokul West</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Tokul West roundabout </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.570321,-121.887966" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="http://sqrecreation.com/snoqualmie/about/non-motorized-recreation-access-families/non-motorized-recreation-access-families" target="_blank"><img class="cp-icon-link__icon" src="/assets/campbell.png"/></a>
+        <span>Trail requires <a href="http://sqrecreation.com/snoqualmie/about/non-motorized-recreation-access-families/non-motorized-recreation-access-families" target="_blank">Campbell Global Snoqualmie Forest Permit</a></span>
+      </li>
     
+    
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.570321,-121.887966" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Roundabout parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.570321,-121.887966" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
   <li class="cp-trail-system">
     <h2>Tolt MacDonald Park</h2>
+    <ul class="cp-trail-system-detail-list">
     
-      <span>Tolt MacDonald Park </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.644222,-121.922551" target="_blank">location</a>
     
-      <span>Tolt MacDonald Base ball field </span>
-      <a href="https://www.google.com/maps/search/?api=1&query=47.640908,-121.91613" target="_blank">location</a>
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.644222,-121.922551" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Park parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.644222,-121.922551" target="_blank">directions</a>
+      </li>
+      
     
+      <li>
+        <a class="cp-icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=47.640908,-121.91613" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
+        <span>Baseball field parking</span>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=47.640908,-121.91613" target="_blank">directions</a>
+      </li>
+      
+    
+    </ul>
   </li>
 
 </ul>

@@ -1,6 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Discovery Pass"
+    "name": "Discover Pass",
+    "icon": "/assets/discoverpass.png",
+    "website": "https://discoverpass.wa.gov/133/Where-to-Buy"
   }
 ]

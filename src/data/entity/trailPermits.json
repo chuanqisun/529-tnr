@@ -1,6 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Campbell Global Snoqualmie Forest Permit"
+    "name": "Campbell Global Snoqualmie Forest Permit",
+    "website": "http://sqrecreation.com/snoqualmie/about/non-motorized-recreation-access-families/non-motorized-recreation-access-families",
+    "icon": "/assets/campbell.png"
   }
 ]

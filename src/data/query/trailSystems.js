@@ -1,4 +1,5 @@
 const trailSystems = require('../entity/trailSystems.json');
+const trailPermits = require('../entity/trailPermits.json');
 const parkingLots = require('../entity/parkingLots.json');
 const parkingPermits = require('../entity/parkingPermits.json');
 const restaurants = require('../entity/restaurants.json');
@@ -10,8 +11,8 @@ const getParkingLots = ({ id }) => {
       id: lot.id,
       name: lot.name,
       streetAddress: lot.streetAddress,
-      entranceCoordinates: { lat: lot.entranceCoordinates[0], lng: lot.entranceCoordinates[1] },
-      parkingPermits: lot.parkingPermitIds && lot.parkingPermitIds.map(id => parkingPermits.find(permit => permit.id === id)),
+      parkingPermit: lot.parkingPermitId !== undefined && parkingPermits.find(permit => permit.id === lot.parkingPermitId),
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${lot.entranceCoordinates[0]},${lot.entranceCoordinates[1]}`
     }))[0];
 }
 
@@ -60,5 +61,6 @@ module.exports = async () => {
     parkingLots: trailSystem.parkingLotIds.map(id => getParkingLots({ id })),
     restaurants: trailSystem.restaurantIds && trailSystem.restaurantIds.map(id => restaurants.find(restaurant => restaurant.id === id)),
     weather: weatherAtTrailSystems.find(item => item.trailSystemId === trailSystem.id).weather,
+    trailPermit: trailPermits.find(permit => permit.id === trailSystem.trailPermitId),
   })).sort((a, b) => a.name.localeCompare(b.name));
 }

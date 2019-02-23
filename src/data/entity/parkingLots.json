@@ -1,95 +1,95 @@
 [
   {
     "id": 0,
-    "name": "Duthie winter lot",
+    "name": "Winter lot parking",
     "entranceCoordinates": [47.584119, -121.976644]
   },
   {
     "id": 1,
-    "name": "Duthie summer lot",
+    "name": "Summer lot (close at dusk) parking",
     "streetAddress": "26100-26156 SE Issaquah-Fall City Rd, Issaquah, WA 98029",
     "entranceCoordinates": [47.572383, -121.988567]
   },
   {
     "id": 2,
-    "name": "Paradise Valley trailhead",
+    "name": "Trailhead parking",
     "streetAddress": "23210 Paradise Lake Rd Woodinville, WA 98077",
     "entranceCoordinates": [47.789007, -122.080139]
   },
   {
     "id": 3,
-    "name": "Tokul East trailhead",
+    "name": "Trailhead parking",
     "streetAddress": "4266 356th Dr SE, Fall City, WA 98024",
     "entranceCoordinates": [47.567720, -121.865428]
   },
   {
     "id": 4,
-    "name": "Tokul West roundabout",
+    "name": "Roundabout parking",
     "streetAddress": "4137 Fall City-Carnation Rd SE, Fall City, WA 98024",
     "entranceCoordinates": [47.570321, -121.887966]
   },
   {
     "id": 5,
-    "name": "Soaring Eagle water tower",
+    "name": "Trailhead parking",
     "streetAddress": "26015 E Main Drive, Sammamish, WA 98075",
     "entranceCoordinates": [47.611934, -121.991792]
   },
   {
     "id": 6,
-    "name": "East Sunset Way trailhead",
+    "name": "Trailhead parking",
     "streetAddress": "606 East Sunset Way, Issaquah, WA 98027",
     "entranceCoordinates": [47.529896, -122.025725]
   },
   {
     "id": 7,
-    "name": "St.Edwards park",
+    "name": "Park parking",
     "entranceCoordinates": [47.733163, -122.255898],
-    "parkingPermitIds": [0]
+    "parkingPermitId": 0
   },
   {
     "id": 8,
-    "name": "QFC parking lot",
+    "name": "QFC parking",
     "streetAddress": "14130 Juanita Dr NE, Bothell, WA 98011",
     "entranceCoordinates": [47.529896, -122.025725]
   },
   {
     "id": 9,
-    "name": "Street parking by Mountain View Rd NE",
+    "name": "Street parking",
     "streetAddress": "16745 Mountain View Rd NE, Duvall, WA 98019",
     "entranceCoordinates": [47.745893, -121.908317]
   },
   {
     "id": 10,
-    "name": "Cedar Falls trailhead",
+    "name": "Trailhead parking",
     "entranceCoordinates": [47.432548, -121.766458]
   },
   {
     "id": 11,
-    "name": "Tolt MacDonald Park",
+    "name": "Park parking",
     "streetAddress": "31020 NE 40th St, Carnation, WA 98014",
     "entranceCoordinates": [47.644222, -121.922551]
   },
   {
     "id": 12,
-    "name": "Tolt MacDonald Base ball field",
+    "name": "Baseball field parking",
     "entranceCoordinates": [47.640908, -121.916130]
   },
   {
     "id": 13,
-    "name": "Tiger Mountain lower lot",
+    "name": "Lower lot parking",
     "entranceCoordinates": [47.466405, -121.931122]
   },
   {
     "id": 14,
-    "name": "Tiger Mountain upper lot",
+    "name": "Upper lot parking",
     "entranceCoordinates": [47.467693, -121.936664],
-    "parkingPermitIds": [0]
+    "parkingPermitId": 0
   },
   {
     "id": 15,
-    "name": "Rattlesnake Mountain Trail parking lot",
+    "name": "Trailhead parking",
     "streetAddress": "37580 Winery Rd, Snoqualmie, WA 98065",
     "entranceCoordinates": [47.509592, -121.844198],
-    "parkingPermitIds": [0]
+    "parkingPermitId": 0
   }
 ]

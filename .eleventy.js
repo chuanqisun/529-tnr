@@ -21,12 +21,15 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addFilter("decimalToPercentage", value => `${Math.round(100 * value)}%`);
 
+  eleventyConfig.addPassthroughCopy("assets");
+
   return {
     dir: {
       input: "src",
       output: "dist",
       data: "data",
       includes: "includes",
-    }
+    },
+    passthroughFileCopy: true
   }
 }
