@@ -8,7 +8,7 @@ module.exports = eleventyConfig => {
     return days[date.getDay()];
   });
 
-  eleventyConfig.addFilter("localeTime", value => (new Date(value*1000)).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}))
+  eleventyConfig.addFilter("localeTime", value => (new Date(value*1000)).toLocaleTimeString("en-US", {hour: '2-digit', minute: '2-digit', timeZone: "America/Los_Angeles"}))
 
   eleventyConfig.addFilter("isoDate", value => {
     const date = new Date(value*1000);
