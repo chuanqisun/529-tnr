@@ -21,6 +21,8 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addFilter("decimalToPercentage", value => `${Math.round(100 * value)}%`);
 
+  eleventyConfig.addFilter("truncateForecastDays", value => value.slice(0, 7));
+
   eleventyConfig.addPassthroughCopy("assets");
 
   return {

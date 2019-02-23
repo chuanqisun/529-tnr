@@ -13,9 +13,11 @@
   </head>
   <body>
     <div class="cp-center-column">
+      <div class="cp-center-column__padded">
       {% include "partials/header.njk" %}
       {{ content | safe }}
       {% include "partials/footer.njk" %}
+      </div>
     </div>
   </body>
 </html>

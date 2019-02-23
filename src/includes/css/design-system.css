@@ -91,7 +91,7 @@ h2 {
   background-color: white;
   left: calc(100% + var(--gap-size));
   height: 100%;
-  width: calc(7 * (100% + var(--gap-size)));
+  width: calc(6 * (100% + var(--gap-size)));
   opacity: 1;
 }
 
@@ -131,13 +131,12 @@ h2 {
   margin-bottom: 2rem;
 }
 
-.cp-nav-links__list {
-  margin: 0 -1rem;
+.cp-nav-links__list li{
+  display: inline;
 }
 
-.cp-nav-links__list li {
-  display: inline;
-  margin: 0 1rem;
+.cp-nav-links__list li + li {
+  margin-left: 1rem;
 }
 
 .cp-nav-link {
@@ -155,8 +154,13 @@ h2 {
 }
 
 .cp-center-column {
-  padding: 1rem 2rem;
-  max-width: 56rem;
+  padding: 1rem 0;
+  max-width: 44rem;
   margin: auto;
   box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
+}
+
+.cp-center-column__padded {
+  max-width: 36rem;
+  margin: auto;
 }
