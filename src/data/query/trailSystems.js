@@ -19,9 +19,11 @@ const getWeather = async () => {
   let weatherArray = [];
 
   if (process.env.DARKSKY_SECRETKEY) {
+    console.log('process.env.DARKSKY_SECRETKEY exists, query API');
     const weatherPromises = trailSystems.map(trailSystem => getWeatherByCoordinates({lat: trailSystem.centerCoordinates[0], lng: trailSystem.centerCoordinates[1]}));
     weatherArray = await Promise.all(weatherPromises);
   } else {
+    console.log('process.env.DARKSKY_SECRETKEY does not exist, use mock data');
     weatherArray = require('./weather-array.mock.json');
   }
 
