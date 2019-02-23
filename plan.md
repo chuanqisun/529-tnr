@@ -1,31 +1,10 @@
-# setup
+# Setup
 1. Build and deploy from Netlify: https://app.netlify.com/sites/riderpacket/overview
-2. Build hourly from IFTTT: 
+2. Build hourly from IFTTT: https://ifttt.com/applets/95767564d-deploy-529-rider-packet-site-hourly
 3. IFTTT uses webhook provided by Netlify to trigger build and deploy
 
-# User tasks
-1. view roster
-2. ride announcement
-3. get sponsored goods
-4. look up and buy permits
-5. look up restaurant locations, search near
-6. look up trail system info
-7. look up parking info
-8. look up weather info
-9. decide whether to bring lights (sunset time)
-
-# Plan
-1. phase 1, a static site for readers only
-2. phase 2, + ride announce tools
-3. phase 3, + content studio for changing json
-
-# Schema
-1. Trail system
-2. Parking lot
-3. Restaurant
-4. Sponsor
-5. Team member
-6. Ride
+# Roadmap
+1. This week's ride from email announcement
 
 # Reference
 - [CSS-tricks conference](https://github.com/CSS-Tricks/conferences)
