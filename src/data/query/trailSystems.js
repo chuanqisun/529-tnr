@@ -16,9 +16,14 @@ const getParkingLots = ({ id }) => {
 }
 
 const getWeather = async () => {
-  // const weatherPromises = trailSystems.map(trailSystem => getWeatherByCoordinates({lat: trailSystem.centerCoordinates[0], lng: trailSystem.centerCoordinates[1]}));
-  // const weatherArray = await Promise.all(weatherPromises);
-  const weatherArray = require('./weather-array.mock.json');
+  let weatherArray = [];
+
+  if (process.env.DARKSKY_SECRETKEY) {
+    const weatherPromises = trailSystems.map(trailSystem => getWeatherByCoordinates({lat: trailSystem.centerCoordinates[0], lng: trailSystem.centerCoordinates[1]}));
+    weatherArray = await Promise.all(weatherPromises);
+  } else {
+    weatherArray = require('./weather-array.mock.json');
+  }
 
   const weatherAtTrailSystems = weatherArray.map((data, index) => ({
     trailSystemId: trailSystems[index].id,
@@ -30,8 +35,7 @@ const getWeather = async () => {
 
 const getWeatherByCoordinates = async ({ lat, lng }) => {
   const https = require('https');
-  const apiKeys = require('../../../api-keys.json');
-  const darkSkyApiSecret = apiKeys.darkSky.secretKey
+  const darkSkyApiSecret = process.env.DARKSKY_SECRETKEY;
 
   return new Promise((resolve, reject) => {
     https.get(`https://api.darksky.net/forecast/${darkSkyApiSecret}/${lat},${lng}`, response => {
