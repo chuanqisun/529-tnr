@@ -2,6 +2,7 @@
 1. Build and deploy from Netlify: https://app.netlify.com/sites/riderpacket/overview
 2. Build hourly from IFTTT: https://ifttt.com/applets/95767564d-deploy-529-rider-packet-site-hourly
 3. IFTTT uses webhook provided by Netlify to trigger build and deploy
+4. Weather data from Dark Sky: https://darksky.net/dev/account
 
 # Roadmap
 1. This week's ride from email announcement
