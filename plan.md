@@ -1,3 +1,8 @@
+# setup
+1. Build and deploy from Netlify: https://app.netlify.com/sites/riderpacket/overview
+2. Build hourly from IFTTT: 
+3. IFTTT uses webhook provided by Netlify to trigger build and deploy
+
 # User tasks
 1. view roster
 2. ride announcement

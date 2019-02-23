@@ -17,10 +17,18 @@ h1 {
   margin: 0;
 }
 
+.h1-by-line {
+  font-weight: 600;
+}
+
 h2 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
+}
+
+small {
+  font-size: 0.7rem;
 }
 
 /* todo */
@@ -127,20 +135,12 @@ h2 {
 }
 
 .cp-nav-links {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.cp-nav-links__list li{
-  display: inline;
-}
-
-.cp-nav-links__list li + li {
-  margin-left: 1rem;
-}
-
 .cp-nav-link {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .cp-nav-link--active {
@@ -161,6 +161,12 @@ h2 {
 }
 
 .cp-center-column__padded {
-  max-width: 36rem;
+  max-width: 30rem;
   margin: auto;
+}
+
+.cp-site-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

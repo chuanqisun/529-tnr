@@ -1,15 +1,20 @@
-<h1>529 Rider Packet</h1>
-<nav class="cp-nav-links">
-  <ul class="cp-nav-links__list">
-  {% for tool in collections.tool %}
-    <li>
-      {% if page.url == tool.url %}
-      <span class="cp-nav-link cp-nav-link--active">▸{{ tool.data.title }}◂</span>
-      {% endif %}
-      {% if page.url != tool.url %}
-      <a class="cp-nav-link" href="{{ tool.url}}">{{ tool.data.title }}</a>
-      {% endif %}
-    </li>
-  {% endfor %}
-  </ul>
-</nav>
+<header class="cp-site-header">
+  <div style="display: inline-block">
+    <h1>Thursday Night Ride</h1>
+    <span class="h1-by-line">by 529 Legion</span>
+  </div>
+  <nav style="display: inline-block" class="cp-nav-links">
+    <ul class="cp-nav-links__list">
+    {% for tool in collections.tool %}
+      <li>
+        {% if page.url == tool.url %}
+        <span class="cp-nav-link cp-nav-link--active">▸{{ tool.data.title }}</span>
+        {% endif %}
+        {% if page.url != tool.url %}
+        <a class="cp-nav-link" href="{{ tool.url}}">{{ tool.data.title }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+</header>
