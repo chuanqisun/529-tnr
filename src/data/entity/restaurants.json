@@ -1,46 +1,68 @@
 [
   {
     "id": 0,
-    "name": "Tipsy Cow"
+    "name": "Tipsy Cow",
+    "menuUrl": "https://www.tipsycowburgerbar.com/eat/",
+    "coordinates": [47.754149, -122.150536]
   },
   {
     "id": 1,
-    "name": "RAM"
+    "name": "RAM",
+    "menuUrl": "https://www.theram.com/menus/wa/issaquah.php",
+    "coordinates": [47.542791, -122.017271]
   },
   {
     "id": 2,
-    "name": "Fall City Roadhouse"
+    "name": "Fall City Roadhouse",
+    "menuUrl": "https://fcroadhouse.com/menu/",
+    "coordinates": [47.567519, -121.887604]
   },
   {
     "id": 3,
-    "name": "Pine Lake Ale House"
+    "name": "Pine Lake Ale House",
+    "menuUrl": "http://pinelakealehouse.com/the-food/",
+    "coordinates": [47.615666, -122.034837]
   },
   {
     "id": 4,
-    "name": "Rouge Ales Issaquah Brewhouse"
+    "name": "Rouge Ales Issaquah Brewhouse",
+    "menuUrl": "http://places.singleplatform.com/rogue-issaquah-brewhouse/menu",
+    "coordinates": [47.530054, -122.037223]
   },
   {
     "id": 5,
-    "name": "Cactus Kirkland"
+    "name": "Cactus Kirkland",
+    "menuUrl": "https://www.cactusrestaurants.com/menu/dinner/",
+    "coordinates": [47.676126, -122.205862]
   },
   {
     "id": 6,
-    "name": "Duvall Tavern"
+    "name": "Duvall Tavern",
+    "menuUrl": "http://duvalltavern.com/menu/",
+    "coordinates": [47.742490, -121.986033]
   },
   {
     "id": 7,
-    "name": "The Riverbend Cafe"
+    "name": "The Riverbend Cafe",
+    "menuUrl": "http://riverbendcafenorthbend.com/restaurantnorth-bend/menu/",
+    "coordinates": [47.470976, -121.758769]
   },
   {
     "id": 8,
-    "name": "Lazy K’s Pizza and Pasta"
+    "name": "Pomegranate Bistro",
+    "menuUrl": "https://pomegranatebistro.com/menus",
+    "coordinates": [47.666521, -122.099670]
   },
   {
     "id": 9,
-    "name": "No Boat Brewery"
+    "name": "No Boat Brewery",
+    "menuUrl": "http://noboatbrewing.com/beer",
+    "coordinates": [47.528499, -121.871164]
   },
   {
     "id": 10,
-    "name": "Mod Pizza"
+    "name": "Mod Pizza",
+    "menuUrl": "https://modpizza.com/menu/",
+    "coordinates": [47.528383, -121.873997]
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: Parking
+title: Trail info
 layout: layouts/base.njk
 tags: tool
 ---
@@ -30,6 +30,14 @@ tags: tool
       </li>
       {% endif %}
     {% endfor %}
+    {% if trailSystem.restaurants.length > 0 %}
+    {% for restaurant in trailSystem.restaurants %}
+    <li>
+      <a class="cp-icon-link" href="{{ restaurant.googleMapsUrl }}" target="_blank"><img class="cp-icon-link__icon" src="/assets/bar.png"/><a/>
+      <span>{{ restaurant.name }} <a href="{{ restaurant.googleMapsUrl }}" target="_blank">directions</a> <a href="{{ restaurant.menuUrl }}" target="_blank">menu</a></span>
+    </li>
+    {% endfor %}
+    {% endif %}
     </ul>
   </li>
 {% endfor %}

@@ -2,7 +2,6 @@ const trailSystems = require('../entity/trailSystems.json');
 const trailPermits = require('../entity/trailPermits.json');
 const parkingLots = require('../entity/parkingLots.json');
 const parkingPermits = require('../entity/parkingPermits.json');
-const restaurants = require('../entity/restaurants.json');
 
 const getParkingLots = ({ id }) => {
   return parkingLots
@@ -52,6 +51,16 @@ const getWeatherByCoordinates = async ({ lat, lng }) => {
   });
 }
 
+const getRestaurant = ({id}) => {
+  const restaurants = require('../entity/restaurants.json');
+
+  const matchingRestaurant = restaurants.find(restaurant => restaurant.id === id);
+  return {
+    ...matchingRestaurant,
+    googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${matchingRestaurant.coordinates[0]},${matchingRestaurant.coordinates[1]}`
+  }
+}
+
 module.exports = async () => {
   const weatherAtTrailSystems = await getWeather();
 
@@ -59,7 +68,7 @@ module.exports = async () => {
     id: trailSystem.id,
     name: trailSystem.name,
     parkingLots: trailSystem.parkingLotIds.map(id => getParkingLots({ id })),
-    restaurants: trailSystem.restaurantIds && trailSystem.restaurantIds.map(id => restaurants.find(restaurant => restaurant.id === id)),
+    restaurants: trailSystem.restaurantIds && trailSystem.restaurantIds.map(id => getRestaurant({id})),
     weather: weatherAtTrailSystems.find(item => item.trailSystemId === trailSystem.id).weather,
     trailPermit: trailPermits.find(permit => permit.id === trailSystem.trailPermitId),
   })).sort((a, b) => a.name.localeCompare(b.name));
