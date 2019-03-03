@@ -11,7 +11,7 @@ module.exports = async () => {
     console.log('process.env.GOOGLEAPI_CLIENT_EMAIL and GOOGLEAPI_PRIVATE_KEY exists, query API');
     credentials = {
       client_email: process.env.GOOGLEAPI_CLIENT_EMAIL,
-      private_key: `-----BEGIN PRIVATE KEY-----\n${process.env.GOOGLEAPI_PRIVATE_KEY}\n-----END PRIVATE KEY-----\n`,
+      private_key: process.env.GOOGLEAPI_PRIVATE_KEY.replace('\\n', '\n'),
     }
   } else {
     console.log('process.env.GOOGLEAPI_CLIENT_EMAIL and GOOGLEAPI_PRIVATE_KEY does not exists, use test-api-keys.json');
