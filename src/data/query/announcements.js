@@ -48,11 +48,24 @@ module.exports = async () => {
 
   const items = await Promise.all(itemPromises);
   const itemsData = items.map(item => {
-    // This interface is defined in the Flow
+
+    // This item.data interface is defined in the Flow
+
+    const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+    const nowDate = new Date();
+    const thenDate = new Date(item.data.time);
+    const diffDays = Math.round(Math.abs((nowDate.getTime() - thenDate.getTime())/(oneDay)));
+    let friendlyTime = 'today';
+    if (diffDays > 1) {
+      friendlyTime = `${diffDays} days ago`;
+    } else if (diffDays > 0) {
+      friendlyTime = `yesterday`;
+    }
+
     return {
       body: item.data.body,
       subject: item.data.subject,
-      time: new Date(item.data.time).toLocaleString("en-US", {month: 'short', day: 'numeric', timeZone: "America/Los_Angeles"}),
+      time: friendlyTime,
     };
   });
 
