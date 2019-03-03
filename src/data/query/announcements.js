@@ -10,7 +10,6 @@ module.exports = async () => {
   if (process.env.GOOGLEAPI_CLIENT_EMAIL && process.env.GOOGLEAPI_PRIVATE_KEY) {
     console.log('process.env.GOOGLEAPI_CLIENT_EMAIL and GOOGLEAPI_PRIVATE_KEY exists, query API');
     const reconstructedKey = process.env.GOOGLEAPI_PRIVATE_KEY.replace(/\\n/gi, '\n');
-    console.log(reconstructedKey);
 
     credentials = {
       client_email: process.env.GOOGLEAPI_CLIENT_EMAIL,
