@@ -1,0 +1,14 @@
+---
+title: New rides
+layout: layouts/base.njk
+tags: tool
+date: 2019-02-22
+permalink: ride.html
+---
+
+{% for announcement in query.announcements %}
+<span class="h2-by-line">Announced on {{ announcement.time }}</span>
+<h2 class="cp-anouncement-title">{{ announcement.subject }}</h2>
+{{ announcement.body | safe }}
+<div class="cp-spacer-mid">
+{% endfor %}
