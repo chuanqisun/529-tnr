@@ -13,7 +13,7 @@ permalink: weather.html
     <h2>{{ trailSystem.name }}</h2>
     <ul class="cp-multiday-weather cp-blur-trigger__host">
       {% for dailyWeather in trailSystem.weather.daily.data | truncateForecastDays %}
-      <li class="cp-singleday-weather" tabindex="0" title="{{ dailyWeather.summary }} {{ dailyWeather.precipProbability | decimalToPercentage}} chance of {{ dailyWeather.precipType | friendlyPrecipitationType}}. Feels like {{ dailyWeather.apparentTemperatureMax | roundToIntTemperatureF }} at {{ dailyWeather.apparentTemperatureMaxTime | localeTime }}. Sunset at {{ dailyWeather.sunsetTime | localeTime }}.">
+      <li class="cp-singleday-weather" tabindex="0" title="{{ dailyWeather.summary }} {{ dailyWeather.precipProbability | decimalToPercentage}} chance of {{ dailyWeather.precipType | friendlyPrecipitationType}}. Sunset at {{ dailyWeather.sunsetTime | localeTime }}.">
         <time datetime="{{ dailyWeather.time | isoDate }}">{{ dailyWeather.time | dayOfWeek }}</time>
         <svg width="32px" height="32px">
           <title>{{ dailyWeather.summary }}</title>
