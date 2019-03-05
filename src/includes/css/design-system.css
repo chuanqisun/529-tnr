@@ -22,6 +22,7 @@ h1 {
 
 .h1-by-line {
   font-weight: 600;
+  font-size: 1.125rem;
 }
 
 h2 {
@@ -32,6 +33,7 @@ h2 {
 
 .h2-by-line {
   font-weight: 600;
+  font-size: 1.125rem;
 }
 
 small {
@@ -192,5 +194,5 @@ small {
 }
 
 .cp-anouncement-title {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }

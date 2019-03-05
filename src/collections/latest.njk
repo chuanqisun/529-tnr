@@ -1,0 +1,28 @@
+---
+title: Latest
+layout: layouts/base.njk
+tags: tool
+date: 2019-02-22
+permalink: latest.html
+---
+{% set announcement = query.announcements[0] %}
+<span class="h2-by-line">Announced {{ announcement.time }}</span>
+<h2 class="cp-anouncement-title">{{ announcement.subject }}</h2>
+
+<iframe style="opacity: 0; width: 100%; border: none;" id="latest-ride" src="./latest-ride-embed.html"></iframe>
+<script>
+  const iframe = document.getElementById('latest-ride');
+  iframe.onload = () => {
+    iframe.style.opacity = 1;
+    iframe.height = iframe.contentWindow.document.body.scrollHeight;
+    /* need to call twice to prevent a double scroll bar in Chrome */
+    iframe.height = iframe.contentWindow.document.body.scrollHeight;
+  }
+
+  window.onresize = () => {
+    iframe.height = iframe.contentWindow.document.body.scrollHeight;
+  }
+
+</script>
+
+

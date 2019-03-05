@@ -1,0 +1,6 @@
+{
+  "googleApi": {
+    "private_key": "JWT_KEY",
+    "client_email": "SERVICE_ACCOUNT_EMAIL"
+  }
+}

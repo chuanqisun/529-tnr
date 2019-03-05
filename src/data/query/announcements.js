@@ -1,5 +1,5 @@
 const EMAIL_FOLDER_ID = '1vEI6XEdd_8ryebe8ZZdOx4DHYNMe0dwd';
-const RECENCY_LIMIT = 10;
+const RECENCY_LIMIT = 1; // only query the latest
 
 const {google} = require('googleapis');
 
@@ -62,8 +62,24 @@ module.exports = async () => {
       friendlyTime = `yesterday`;
     }
 
+    // Inject style that overrides default
+    // Hack: https://stackoverflow.com/questions/23083462/how-to-get-an-iframe-to-be-responsive-in-ios-safari
+    const styleString = `<style>
+      body {
+        margin: 0;
+        width: 1px;
+        min-width: 100%;
+      }
+
+      a {
+        word-wrap: break-word;
+      }
+    </style>`
+
+    const injectedBody = item.data.body.replace('</head>', `${styleString}</head>`);
+
     return {
-      body: item.data.body,
+      body: injectedBody,
       subject: item.data.subject,
       time: friendlyTime,
     };
