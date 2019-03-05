@@ -8,8 +8,12 @@
 7. Ride announcements queried at build time with [Google API](https://console.developers.google.com/apis/dashboard?folder=&organizationId=&project=tnr-233319) authenticated as [the service account](https://console.developers.google.com/iam-admin/serviceaccounts/details/103768907512320484334?folder=&organizationId=&project=tnr-233319).
 
 # Roadmap
-1. This week's ride from email announcement
-2. Past days weather (helpful to know rain accumulation)
+- [x] This week's ride from email announcement
+- [ ] Past days weather (helpful to know rain accumulation)
+- [ ] allow people to sign up for TNR notifications.
+- [ ] Generate weather forecast based on this weeks ride location.
+- [ ] Offline mode for low reception area.
+- [ ] Embed in our ride529 website
 
 # Inspiration and references
 - [CSS-tricks conference](https://github.com/CSS-Tricks/conferences)
