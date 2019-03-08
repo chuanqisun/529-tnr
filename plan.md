@@ -14,6 +14,7 @@
 - [ ] Generate weather forecast based on this weeks ride location.
 - [ ] Offline mode for low reception area.
 - [ ] Embed in our ride529 website
+- [ ] fetch trail condition from Trailfork
 
 # Inspiration and references
 - [CSS-tricks conference](https://github.com/CSS-Tricks/conferences)
