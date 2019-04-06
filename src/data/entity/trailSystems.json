@@ -1,7 +1,8 @@
 [
   {
     "id": 0,
-    "name": "Duthie",
+    "name": "Duthie Hill",
+    "altNames": ["Duthie"],
     "parkingLotIds": [0, 1],
     "restaurantIds": [1],
     "centerCoordinates": [47.578439, -121.978389]
@@ -9,6 +10,7 @@
   {
     "id": 1,
     "name": "Paradise Valley",
+    "altNames": ["Paradise"],
     "parkingLotIds": [2],
     "restaurantIds": [0],
     "centerCoordinates": [47.780905, -122.094690]
@@ -32,6 +34,7 @@
   {
     "id": 4,
     "name": "Soaring Eagle",
+    "altNames": ["Eagle"],
     "parkingLotIds": [5],
     "restaurantIds": [3],
     "centerCoordinates": [47.609795, -121.981337]
@@ -39,6 +42,7 @@
   {
     "id": 5,
     "name": "Grand Ridge",
+    "altNames": ["Grind"],
     "parkingLotIds": [6],
     "restaurantIds": [1, 4],
     "centerCoordinates": [47.547273, -121.979152]
@@ -46,6 +50,7 @@
   {
     "id": 6,
     "name": "St. Edwards Park",
+    "altNames": ["St.Edwards", "Edwards"],
     "parkingLotIds": [7, 8],
     "restaurantIds": [5],
     "centerCoordinates": [47.726655, -122.244680]
@@ -67,6 +72,7 @@
   {
     "id": 9,
     "name": "Tolt MacDonald Park",
+    "altNames": ["Tolt Mac", "Tolt"],
     "parkingLotIds": [11, 12],
     "restaurantIds": [8],
     "centerCoordinates": [47.644054, -121.945121]
@@ -74,12 +80,14 @@
   {
     "id": 10,
     "name": "Tiger Mountain",
+    "altNames": ["Tiger"],
     "parkingLotIds": [13, 14],
     "centerCoordinates": [47.488172, -121.947279]
   },
   {
     "id": 11,
     "name": "Raging River",
+    "altNames": ["Raging"],
     "parkingLotIds": [15],
     "restaurantIds": [9, 10],
     "centerCoordinates": [47.468617, -121.824860]

@@ -1,0 +1,16 @@
+<ul class="cp-multiday-weather cp-blur-trigger__host">
+  {% for dailyWeather in trailSystem.weather.daily.data | truncateForecastDays %}
+  <li class="cp-singleday-weather" tabindex="0" title="{{ dailyWeather.summary }} {{ dailyWeather.precipProbability | decimalToPercentage}} chance of {{ dailyWeather.precipType | friendlyPrecipitationType}}. Sunset at {{ dailyWeather.sunsetTime | localeTime }}.">
+    <time datetime="{{ dailyWeather.time | isoDate }}">{{ dailyWeather.time | dayOfWeek }}</time>
+    <svg width="32px" height="32px">
+      <title>{{ dailyWeather.summary }}</title>
+      <use xlink:href="#{{ dailyWeather.icon }}"></use>
+    </svg>
+    <div class="cp-temperature-bracket">
+      <span>{{ dailyWeather.temperatureHigh | roundToIntTemperatureF }}</span>
+      <span>{{ dailyWeather.temperatureLow | roundToIntTemperatureF }}</span>
+    </div>
+  </li>
+  {% endfor %}
+  <div tabindex="0" class="cp-blur-trigger__overlay"></div>
+</ul>

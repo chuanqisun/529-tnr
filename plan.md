@@ -11,7 +11,7 @@
 - [x] This week's ride from email announcement
 - [ ] Past days weather (helpful to know rain accumulation)
 - [ ] allow people to sign up for TNR notifications.
-- [ ] Generate weather forecast based on this weeks ride location.
+- [x] Generate weather forecast based on this weeks ride location.
 - [ ] Offline mode for low reception area.
 - [ ] Embed in our ride529 website
 - [ ] fetch trail condition from Trailfork

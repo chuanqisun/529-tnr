@@ -3,8 +3,6 @@ const RECENCY_LIMIT = 1; // only query the latest
 
 const {google} = require('googleapis');
 
-
-
 module.exports = async () => {
   let credentials = {};
   if (process.env.GOOGLEAPI_CLIENT_EMAIL && process.env.GOOGLEAPI_PRIVATE_KEY) {
@@ -78,12 +76,35 @@ module.exports = async () => {
 
     const injectedBody = item.data.body.replace('</head>', `${styleString}</head>`);
 
+    const trailSystemId = mapSubjectToTrailSystemId(item.data.subject);
+
     return {
       body: injectedBody,
       subject: item.data.subject,
       time: friendlyTime,
+      trailSystemId,
     };
   });
 
   return itemsData;
+}
+
+function mapSubjectToTrailSystemId(subject) {
+  const normalizedSubject = subject.toUpperCase();
+  console.log(normalizedSubject);
+
+  const trailSystems = require('../entity/trailSystems.json');
+
+  const candidate = trailSystems.find(trailSystem => {
+    const nameMatch = normalizedSubject.includes(trailSystem.name.toUpperCase());
+    const altNameMatch = trailSystem.altNames && trailSystem.altNames.some(altName => normalizedSubject.includes(altName.toUpperCase()));
+
+    return nameMatch || altNameMatch;
+  });
+
+  if (candidate) {
+    return candidate.id;
+  }
+
+  return null;
 }

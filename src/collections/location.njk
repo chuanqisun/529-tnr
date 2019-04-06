@@ -11,35 +11,7 @@ permalink: location.html
 {% for trailSystem in query.trailSystems %}
   <li class="cp-trail-system">
     <h2>{{ trailSystem.name }}</h2>
-    <ul class="cp-trail-system-detail-list">
-    {% if trailSystem.trailPermit %}
-      <li>
-        <a class="cp-icon-link" href="{{ trailSystem.trailPermit.website }}" target="_blank"><img class="cp-icon-link__icon" src="{{ trailSystem.trailPermit.icon }}"/></a>
-        <span>Trail requires <a href="{{ trailSystem.trailPermit.website }}" target="_blank">{{ trailSystem.trailPermit.name }}</a></span>
-      </li>
-    {% endif %}
-    {% for parkingLot in trailSystem.parkingLots %}
-      <li>
-        <a class="cp-icon-link" href="{{ parkingLot.googleMapsUrl }}" target="_blank"><img class="cp-icon-link__icon" src="/assets/gmaps.png"/></a>
-        <span>{{ parkingLot.name }}</span>
-        <a href="{{ parkingLot.googleMapsUrl }}" target="_blank">directions</a>
-      </li>
-      {% if parkingLot.parkingPermit %}
-      <li>
-        <a class="cp-icon-link" href="{{ parkingLot.parkingPermit.website }}" target="_blank"><img class="cp-icon-link__icon" src="{{ parkingLot.parkingPermit.icon }}"/></a>
-        <span>{{ parkingLot.name }} requires <a href="{{ parkingLot.parkingPermit.website }}" target="_blank">{{ parkingLot.parkingPermit.name }}</a></span>
-      </li>
-      {% endif %}
-    {% endfor %}
-    {% if trailSystem.restaurants.length > 0 %}
-    {% for restaurant in trailSystem.restaurants %}
-    <li>
-      <a class="cp-icon-link" href="{{ restaurant.googleMapsUrl }}" target="_blank"><img class="cp-icon-link__icon" src="/assets/bar.png"/><a/>
-      <span>{{ restaurant.name }} <a href="{{ restaurant.googleMapsUrl }}" target="_blank">directions</a> <a href="{{ restaurant.menuUrl }}" target="_blank">menu</a></span>
-    </li>
-    {% endfor %}
-    {% endif %}
-    </ul>
+    {% include "partials/trailSystemLocationDetails.njk" %}
   </li>
 {% endfor %}
 </ul>
