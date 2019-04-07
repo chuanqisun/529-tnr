@@ -1,3 +1,8 @@
 [build]
   command = "eleventy"
   publish = "dist"
+
+[[redirects]]
+  from = "/index.html"
+  to = "/latest.html"
+  status = 200
