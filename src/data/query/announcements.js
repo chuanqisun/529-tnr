@@ -91,7 +91,6 @@ module.exports = async () => {
 
 function mapSubjectToTrailSystemId(subject) {
   const normalizedSubject = subject.toUpperCase();
-  console.log(normalizedSubject);
 
   const trailSystems = require('../entity/trailSystems.json');
 
