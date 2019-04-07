@@ -30,16 +30,17 @@ permalink: latest.html
 <ul>
 {% for trailSystem in query.trailSystems %}
   {% if trailSystem.id === announcement.trailSystemId %}
-    <h2>Weather</h2>
-    {% include "partials/trailSystemWeatherDetails.njk" %}
+    <h2>Navigation</h2>
+    <p>Links for reference only. Actual parking and dining plans are in the announcement above.</p>
+    {% include "partials/trailSystemLocationDetails.njk" %}
     <div class="cp-spacer-mid"></div>
   {% endif %}
 {% endfor %}
+
 {% for trailSystem in query.trailSystems %}
   {% if trailSystem.id === announcement.trailSystemId %}
-    <h2>Location*</h2>
-    {% include "partials/trailSystemLocationDetails.njk" %}
-    <p>*Locations for reference only. Actual parking and dining plans are in the announcement above. Never drink and drive.</p>
+    <h2>Weather</h2>
+    {% include "partials/trailSystemWeatherDetails.njk" %}
     <div class="cp-spacer-mid"></div>
   {% endif %}
 {% endfor %}
