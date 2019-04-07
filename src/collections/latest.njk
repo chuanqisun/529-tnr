@@ -37,9 +37,9 @@ permalink: latest.html
 {% endfor %}
 {% for trailSystem in query.trailSystems %}
   {% if trailSystem.id === announcement.trailSystemId %}
-    <h2>Location</h2>
-    <p>For reference only. Use the announcement above as the ultimate source of truth</p>
+    <h2>Location*</h2>
     {% include "partials/trailSystemLocationDetails.njk" %}
+    <p>*Locations for reference only. Actual parking and dining plans are in the announcement above.</p>
     <div class="cp-spacer-mid"></div>
   {% endif %}
 {% endfor %}
