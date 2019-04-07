@@ -4,5 +4,10 @@
 
 [[redirects]]
   from = "/"
-  to = "/latest.html"
+  to = "/latest"
+  status = 301
+
+[[redirects]]
+  from = "/index.html"
+  to = "/latest"
   status = 301
