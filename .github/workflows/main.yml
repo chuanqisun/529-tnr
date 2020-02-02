@@ -1,0 +1,20 @@
+name: Build site on everyday at midnight
+
+on:
+  push:
+    branches: 
+      - master
+
+  schedule:
+    - cron: "59 7 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: joelwmale/webhook-action@master
+      env:
+        WEBHOOK_URL: ${{ secrets.buildWebHook }}
+        data: "Hello from github actions!"
