@@ -11,3 +11,4 @@
   from = "/index.html"
   to = "/latest"
   status = 301
+  force = true
