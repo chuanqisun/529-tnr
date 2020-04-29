@@ -6,6 +6,7 @@
   from = "/"
   to = "/latest"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/index.html"
