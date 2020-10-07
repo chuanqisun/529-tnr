@@ -8,8 +8,8 @@
     "start": "eleventy --serve"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.10.0",
-    "googleapis": "^47.0.0"
+    "@11ty/eleventy": "^0.11.0",
+    "googleapis": "^60.0.1"
   },
   "keywords": [],
   "author": "",
