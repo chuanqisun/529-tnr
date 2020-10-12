@@ -15,6 +15,5 @@ jobs:
 
     steps:
     - uses: joelwmale/webhook-action@master
-      env:
-        WEBHOOK_URL: ${{ secrets.buildWebHook }}
-        data: "Hello from github actions!"
+      with:
+        url: ${{ secrets.buildWebHook }}
