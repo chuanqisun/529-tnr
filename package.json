@@ -2,7 +2,7 @@
   "name": "529-tnr",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "Weekly ride announcement website",
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve"
