@@ -5,5 +5,7 @@ Thursday Night Ride by 529 Website
 
 
 The build is paused because 529 stopped announcing new rides during the COVID-19 pandemic
+
+
 [![Build site on everyday at midnight](https://github.com/chuanqisun/529-tnr/actions/workflows/main.yml/badge.svg)](https://github.com/chuanqisun/529-tnr/actions/workflows/main.yml)
 
